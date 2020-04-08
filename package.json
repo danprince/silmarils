@@ -1,0 +1,9 @@
+{
+  "name": "silmarils",
+  "description": "Utilities for building 2d games",
+  "version": "0.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:danprince/silmarils.git",
+  "author": "danprince <northwalesdan@gmail.com>",
+  "license": "MIT"
+}
