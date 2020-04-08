@@ -4,6 +4,8 @@
  * @property {number} y
  */
 
+export const ORIGIN = Object.freeze({ x: 0, y: 0 });
+
 /**
  * @param {number} x
  * @param {number} y
@@ -65,3 +67,39 @@ export function translated(point, x, y) {
     y: point.y + y,
   };
 }
+
+/**
+ * @param {Point} point
+ * @param {number} radians
+ * @param {Point} [origin]
+ * @return {void}
+ */
+export function rotate(point, radians, origin = ORIGIN) {
+  let cos = Math.cos(radians);
+  let sin = Math.sin(radians);
+  let dx = point.x - origin.x;
+  let dy = point.y - origin.y;
+
+  point.x = origin.x + cos * dx - sin * dy;
+  point.y = origin.y + sin * dx + cos * dy;
+}
+
+/**
+ *
+ * @param {Point} point
+ * @param {number} radians
+ * @param {Point} [origin]
+ * @return {Point}
+ */
+export function rotated(point, radians, origin = ORIGIN) {
+  let cos = Math.cos(radians);
+  let sin = Math.sin(radians);
+  let dx = point.x - origin.x;
+  let dy = point.y - origin.y;
+
+  return {
+    x: origin.x + cos * dx - sin * dy,
+    y: origin.y + sin * dx + cos * dy,
+  };
+}
+
