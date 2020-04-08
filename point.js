@@ -1,12 +1,20 @@
 /**
+ * Point represents a position in 2d space and is defined by its X and
+ * Y coordinates.
+ *
  * @typedef Point
  * @property {number} x
  * @property {number} y
  */
 
+/**
+ * The origin is the point at 0, 0. It cannot be modified.
+ */
 export const ORIGIN = Object.freeze({ x: 0, y: 0 });
 
 /**
+ * Construct a point from its X and Y coordinates.
+ *
  * @param {number} x
  * @param {number} y
  * @return {Point}
@@ -16,6 +24,8 @@ export function from(x, y) {
 }
 
 /**
+ * Create a copy of a point that can be modified separately.
+ *
  * @param {Point} point
  * @return {Point}
  */
@@ -24,6 +34,9 @@ export function clone(point) {
 }
 
 /**
+ * Check whether two points are equal. Points are considered equal if
+ * their X and Y coordinates are both equal.
+ *
  * @param {Point} p1
  * @param {Point} p2
  * @return {boolean}
@@ -36,6 +49,8 @@ export function equals(p1, p2) {
 }
 
 /**
+ * Calculate the Euclidean distance between two points.
+ *
  * @param {Point} p1
  * @param {Point} p2
  * @return {number}
@@ -45,6 +60,8 @@ export function distance(p1, p2) {
 }
 
 /**
+ * Translate a point by x and y.
+ *
  * @param {Point} point
  * @param {number} x
  * @param {number} y
@@ -56,6 +73,8 @@ export function translate(point, x, y) {
 }
 
 /**
+ * Construct a new point that is translated by x and y.
+ *
  * @param {Point} point
  * @param {number} x
  * @param {number} y
@@ -69,6 +88,8 @@ export function translated(point, x, y) {
 }
 
 /**
+ * Rotate a point around an origin.
+ *
  * @param {Point} point
  * @param {number} radians
  * @param {Point} [origin]
@@ -85,6 +106,7 @@ export function rotate(point, radians, origin = ORIGIN) {
 }
 
 /**
+ * Construct a new point that is rotated around an origin.
  *
  * @param {Point} point
  * @param {number} radians
@@ -102,4 +124,3 @@ export function rotated(point, radians, origin = ORIGIN) {
     y: origin.y + sin * dx + cos * dy,
   };
 }
-
