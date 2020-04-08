@@ -6,6 +6,9 @@
   "repository": "git@github.com:danprince/silmarils.git",
   "author": "danprince <northwalesdan@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
   "devDependencies": {
     "@types/jest": "^25.2.1",
     "jest": "^25.3.0",
