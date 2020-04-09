@@ -39,15 +39,8 @@ describe("Vector", () => {
     expect(Vector.length([-10, -10])).toBeCloseTo(14.1421);
   });
 
-  it.skip("should find the dot product", () => {
-    expect(Vector.dot([6, 8], [5, 12])).toBe(66);
-  });
-
-  it.skip("should find the angle", () => {
-    expect(Vector.angle([0, 3])).toBeCloseTo(0);
-    expect(Vector.angle([10, 0])).toBeCloseTo(Math.PI / 2);
-    expect(Vector.angle([-1, 0])).toBeCloseTo(Math.PI);
-    expect(Vector.angle([0, -2])).toBeCloseTo(Math.PI * 1.5);
+  it("should find the dot product", () => {
+    expect(Vector.dot([10, 10], [20, 20])).toBe(400);
   });
 
   it("should add vectors", () => {

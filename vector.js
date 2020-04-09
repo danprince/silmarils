@@ -87,16 +87,6 @@ export function dot(v1, v2) {
 }
 
 /**
- * Find the angle of a vector.
- *
- * @param {Vector} vector
- * @return {number} Angle in radians
- */
-export function angle(vector) {
-  return Math.atan2(vector[0], vector[1]);
-}
-
-/**
  * Adds two vectors.
  *
  * @param {Vector} v1
