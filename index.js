@@ -6,5 +6,16 @@ import * as Circle from "./circle.js";
 import * as Line from "./line.js";
 import * as RNG from "./rng.js";
 import * as PRNG from "./prng.js";
+import * as Array2D from "./array-2d.js";
 
-export { Point, Vector, Angle, Rectangle, Circle, Line, RNG, PRNG };
+export {
+  Point,
+  Vector,
+  Angle,
+  Rectangle,
+  Circle,
+  Line,
+  RNG,
+  PRNG,
+  Array2D,
+};
