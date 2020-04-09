@@ -60,6 +60,28 @@ export function distance(p1, p2) {
 }
 
 /**
+ * Calculate the Manhattan distance between two points.
+ *
+ * @param {Point} p1
+ * @param {Point} p2
+ * @return {number}
+ */
+export function manhattan(p1, p2) {
+  return Math.abs(p2.x - p1.x) + Math.abs(p2.y - p1.y);
+}
+
+/**
+ * Calculate the Chebyshev distance between two points.
+ *
+ * @param {Point} p1
+ * @param {Point} p2
+ * @return {number}
+ */
+export function chebyshev(p1, p2) {
+  return Math.max(Math.abs(p2.x - p1.x), Math.abs(p2.y - p1.y));
+}
+
+/**
  * Translate a point by a vector.
  *
  * This modifies the point. Use [[translated]] to create a new point.

@@ -76,6 +76,29 @@ export function length(vector) {
 }
 
 /**
+ * Find the Manhattan distance of the vector.
+ *
+ * @param {Vector} vector
+ * @return {number}
+ */
+export function manhattan(vector) {
+  return Math.abs(vector[0]) + Math.abs(vector[1]);
+}
+
+/**
+ * Find the Chebyshev distance of the vector.
+ *
+ * @param {Vector} vector
+ * @return {number}
+ */
+export function chebyshev(vector) {
+  return Math.max(
+    Math.abs(vector[0]),
+    Math.abs(vector[1])
+  );
+}
+
+/**
  * Calculate the dot product of two vectors.
  *
  * @param {Vector} v1

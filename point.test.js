@@ -38,6 +38,24 @@ describe("Point", () => {
     expect(Point.distance(c1, c2)).toBe(5.656854249492381);
   });
 
+  it("should calculate manhattan distance between points", () => {
+    expect(
+      Point.manhattan(
+        Point.from(0, 0),
+        Point.from(1, 5)
+      )
+    ).toBe(6);
+  });
+
+  it("should calculate chebyshev distance between points", () => {
+    expect(
+      Point.chebyshev(
+        Point.from(0, 0),
+        Point.from(1, 5)
+      )
+    ).toBe(5);
+  });
+
   it("should translate a point by a vector", () => {
     let p = Point.from(10, 10);
     let v = Vector.from(1, -1);

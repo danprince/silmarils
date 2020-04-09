@@ -74,6 +74,29 @@ export function length(line) {
 }
 
 /**
+ * Find the Manhattan distance of the line.
+ *
+ * @param {Line} line
+ * @return {number}
+ */
+export function manhattan(line) {
+  return Math.abs(line.x2 - line.x1) + Math.abs(line.y2 - line.y1);
+}
+
+/**
+ * Find the Chebyshev distance of the line.
+ *
+ * @param {Line} line
+ * @return {number}
+ */
+export function chebyshev(line) {
+  return Math.max(
+    Math.abs(line.x2 - line.x1),
+    Math.abs(line.y2 - line.y1)
+  );
+}
+
+/**
  * Get the start point of a line.
  *
  * @param {Line} line

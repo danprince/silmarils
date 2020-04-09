@@ -39,6 +39,16 @@ describe("Vector", () => {
     expect(Vector.length([-10, -10])).toBeCloseTo(14.1421);
   });
 
+  it("should calculate manhattan length of a vector", () => {
+    expect(Vector.manhattan([1, 5])).toBe(6);
+    expect(Vector.manhattan([-1, -5])).toBe(6);
+  });
+
+  it("should calculate chebyshev length of a vector", () => {
+    expect(Vector.chebyshev([1, 5])).toBe(5);
+    expect(Vector.chebyshev([-1, -5])).toBe(5);
+  });
+
   it("should find the dot product", () => {
     expect(Vector.dot([10, 10], [20, 20])).toBe(400);
   });

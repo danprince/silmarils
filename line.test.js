@@ -39,6 +39,16 @@ describe("Line", () => {
     expect(Line.length(l3)).toBeCloseTo(7.071);
   });
 
+  it("should calculate manhattan length of a line", () => {
+    let l = Line.from(0, 0, 1, 5);
+    expect(Line.manhattan(l)).toBe(6);
+  });
+
+  it("should calculate chebyshev length of a line", () => {
+    let l = Line.from(0, 0, 1, 5);
+    expect(Line.chebyshev(l)).toBe(5);
+  });
+
   it("should get the center point of a line", () => {
     let l = Line.from(0, 1, 2, 3);
     expect(Line.center(l)).toEqual({ x: 1, y: 2 });
