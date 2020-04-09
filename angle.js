@@ -23,3 +23,19 @@ export function fromDegrees(degrees) {
 export function toDegrees(radians) {
   return radians * (180 / Math.PI);
 }
+
+/**
+ * Normalize an angle to the interval [0, 2π].
+ *
+ * @param {number} radians
+ * @return {number}
+ */
+export function normalize(radians) {
+  let normalized = radians % DEGREES_360;
+
+  if (normalized < 0) {
+    normalized = DEGREES_360 + normalized;
+  }
+
+  return normalized;
+}

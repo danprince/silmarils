@@ -16,4 +16,10 @@ describe("Angle", () => {
     expect(Angle.toDegrees(Math.PI * 1.5)).toBeCloseTo(270);
     expect(Angle.toDegrees(Math.PI * 2)).toBeCloseTo(360);
   });
+
+  it("should normalize an angle", () => {
+    expect(Angle.normalize(Angle.DEGREES_360)).toBe(Angle.DEGREES_0);
+    expect(Angle.normalize(Angle.DEGREES_270 + Angle.DEGREES_180)).toBe(Angle.DEGREES_90);
+    expect(Angle.normalize(-Angle.DEGREES_90)).toBe(Angle.DEGREES_270);
+  });
 });
