@@ -1,4 +1,5 @@
 import * as Point from "./point.js";
+import * as Vector from "./vector.js";
 
 describe("Point", () => {
   it("should create a point", () => {
@@ -35,6 +36,21 @@ describe("Point", () => {
     let c1 = Point.from(-2, -2);
     let c2 = Point.from(2, 2);
     expect(Point.distance(c1, c2)).toBe(5.656854249492381);
+  });
+
+  it("should translate a point by a vector", () => {
+    let p = Point.from(10, 10);
+    let v = Vector.from(1, -1);
+    Point.translate(p, v);
+    expect(p).toEqual({ x: 11, y: 9 });
+  });
+
+  it("should create a translated point from a vector", () => {
+    let p = Point.from(0, 0);
+    let v = Vector.from(1, -1);
+    let q = Point.translated(p, v);
+    expect(p).toEqual({ x: 0, y: 0 });
+    expect(q).toEqual({ x: 1, y: -1 });
   });
 
   it("should have an origin at 0, 0", () => {

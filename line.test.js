@@ -1,5 +1,6 @@
 import * as Line from "./line.js";
 import * as Point from "./point.js";
+import * as Vector from "./vector.js";
 
 describe("Line", () => {
   it("should create a line", () => {
@@ -51,5 +52,20 @@ describe("Line", () => {
   it("should get the end point of a line", () => {
     let l = Line.from(0, 1, 2, 3);
     expect(Line.end(l)).toEqual({ x: 2, y: 3 });
+  });
+
+  it("should translate a line by a vector", () => {
+    let l = Line.from(1, 2, 3, 4);
+    let v = Vector.from(1, 2);
+    Line.translate(l, v);
+    expect(l).toEqual(Line.from(2, 4, 4, 6));
+  });
+
+  it("should create a translated line from a vector", () => {
+    let v = Vector.from(1, 2);
+    let l1 = Line.from(1, 2, 3, 4);
+    let l2 = Line.translated(l1, v);
+    expect(l1).toEqual(Line.from(1, 2, 3, 4));
+    expect(l2).toEqual(Line.from(2, 4, 4, 6));
   });
 });

@@ -105,3 +105,39 @@ export function center(line) {
 export function end(line) {
   return { x: line.x2, y: line.y2 };
 }
+
+/**
+ * Translate a line by a vector.
+ *
+ * This modifies the line. Use [[translated]] if you want to create
+ * a new line.
+ *
+ * @param {Line} line
+ * @param {import("./vector").Vector} vector
+ * @return {void}
+ */
+export function translate(line, vector) {
+  line.x1 += vector[0];
+  line.y1 += vector[1];
+  line.x2 += vector[0];
+  line.y2 += vector[1];
+}
+
+/**
+ * Translate a line by a vector.
+ *
+ * This creates a new line. Use [[translate]] if you want to modify
+ * the line instead.
+ *
+ * @param {Line} line
+ * @param {import("./vector").Vector} vector
+ * @return {Line}
+ */
+export function translated(line, vector) {
+  return {
+    x1: line.x1 + vector[0],
+    y1: line.y1 + vector[1],
+    x2: line.x2 + vector[0],
+    y2: line.y2 + vector[1],
+  };
+}

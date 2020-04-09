@@ -102,3 +102,36 @@ export function intersects(c1, c2) {
 export function contains(circle, point) {
   return Math.hypot(circle.x - point.x, circle.y - point.y) <= circle.radius;
 }
+
+/**
+ * Translate a circle by a vector.
+ *
+ * This modifies the circle. Use [[translated]] if you want to create
+ * a new circle.
+ *
+ * @param {Circle} circle
+ * @param {import("./vector").Vector} vector
+ * @return {void}
+ */
+export function translate(circle, vector) {
+  circle.x += vector[0];
+  circle.y += vector[1];
+}
+
+/**
+ * Translate a circle by a vector.
+ *
+ * This creates a new circle. Use [[translate]] if you want to modify
+ * the circle instead.
+ *
+ * @param {Circle} circle
+ * @param {import("./vector").Vector} vector
+ * @return {Circle}
+ */
+export function translated(circle, vector) {
+  return {
+    x: circle.x + vector[0],
+    y: circle.y + vector[1],
+    radius: circle.radius,
+  };
+}

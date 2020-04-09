@@ -196,3 +196,37 @@ export function contains(rectangle, point) {
     point.y <= rectangle.y + rectangle.height
   );
 }
+
+/**
+ * Translate a rectangle by a vector.
+ *
+ * This modifies the rectangle. Use [[translated]] if you want to create
+ * a new rectangle.
+ *
+ * @param {Rectangle} rectangle
+ * @param {import("./vector").Vector} vector
+ * @return {void}
+ */
+export function translate(rectangle, vector) {
+  rectangle.x += vector[0];
+  rectangle.y += vector[1];
+}
+
+/**
+ * Translate a rectangle by a vector.
+ *
+ * This creates a new rectangle. Use [[translate]] if you want to modify
+ * the rectangle instead.
+ *
+ * @param {Rectangle} rectangle
+ * @param {import("./vector").Vector} vector
+ * @return {Rectangle}
+ */
+export function translated(rectangle, vector) {
+  return {
+    x: rectangle.x + vector[0],
+    y: rectangle.y + vector[1],
+    width: rectangle.width,
+    height: rectangle.height,
+  };
+}

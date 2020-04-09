@@ -1,5 +1,6 @@
 import * as Rectangle from "./rectangle.js";
 import * as Point from "./point.js";
+import * as Vector from "./vector.js";
 
 describe("Rectangle", () => {
   it("should create a rectangle", () => {
@@ -110,5 +111,20 @@ describe("Rectangle", () => {
         Point.from(-2, 2)
       )
     ).toBe(false);
+  });
+
+  it("should translate a rectangle by a vector", () => {
+    let r = Rectangle.from(1, 2, 3, 4);
+    let v = Vector.from(1, 2);
+    Rectangle.translate(r, v);
+    expect(r).toEqual(Rectangle.from(2, 4, 3, 4));
+  });
+
+  it("should create a translated rectangle from a vector", () => {
+    let v = Vector.from(1, 2);
+    let r1 = Rectangle.from(1, 2, 3, 4);
+    let r2 = Rectangle.translated(r1, v);
+    expect(r1).toEqual(Rectangle.from(1, 2, 3, 4));
+    expect(r2).toEqual(Rectangle.from(2, 4, 3, 4));
   });
 });

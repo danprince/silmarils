@@ -1,5 +1,6 @@
 import * as Circle from "./circle.js";
 import * as Point from "./point.js";
+import * as Vector from "./vector.js";
 
 describe("Circle", () => {
   it("should create a circle", () => {
@@ -70,5 +71,20 @@ describe("Circle", () => {
         Point.from(30, 3)
       )
     ).toBe(false);
+  });
+
+  it("should translate a circle by a vector", () => {
+    let c = Circle.from(1, 2, 3);
+    let v = Vector.from(1, 2);
+    Circle.translate(c, v);
+    expect(c).toEqual(Circle.from(2, 4, 3));
+  });
+
+  it("should create a translated circle from a vector", () => {
+    let v = Vector.from(1, 2);
+    let c1 = Circle.from(1, 2, 3);
+    let c2 = Circle.translated(c1, v);
+    expect(c1).toEqual(Circle.from(1, 2, 3));
+    expect(c2).toEqual(Circle.from(2, 4, 3));
   });
 });

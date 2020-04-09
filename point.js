@@ -58,3 +58,34 @@ export function equals(p1, p2) {
 export function distance(p1, p2) {
   return Math.hypot(p2.x - p1.x, p2.y - p1.y);
 }
+
+/**
+ * Translate a point by a vector.
+ *
+ * This modifies the point. Use [[translated]] to create a new point.
+ *
+ * @param {Point} point
+ * @param {import("./vector").Vector} vector
+ * @return {void}
+ */
+export function translate(point, vector) {
+  point.x += vector[0];
+  point.y += vector[1];
+}
+
+/**
+ * Translate a point by a vector.
+ *
+ * This creates a new point. Use [[translate]] if you want to modify
+ * the point instead.
+ *
+ * @param {Point} point
+ * @param {import("./vector").Vector} vector
+ * @return {Point}
+ */
+export function translated(point, vector) {
+  return {
+    x: point.x + vector[0],
+    y: point.y + vector[1],
+  };
+}
