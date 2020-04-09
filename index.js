@@ -4,5 +4,7 @@ import * as Angle from "./angle.js";
 import * as Rectangle from "./rectangle.js";
 import * as Circle from "./circle.js";
 import * as Line from "./line.js";
+import * as RNG from "./rng.js";
+import * as PRNG from "./prng.js";
 
-export { Point, Vector, Angle, Rectangle, Circle, Line };
+export { Point, Vector, Angle, Rectangle, Circle, Line, RNG, PRNG };
