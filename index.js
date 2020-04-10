@@ -21,3 +21,6 @@ export {
   Array2D,
   Direction,
 };
+
+export * from "./mouse.js";
+export * from "./keyboard.js";
