@@ -111,3 +111,21 @@ export function translated(point, vector) {
     y: point.y + vector[1],
   };
 }
+
+/**
+ * Interpolate a new point between on the line between two points.
+ *
+ * @param {Point} p1
+ * @param {Point} p2
+ * @param {number} value
+ * @return {Point}
+ */
+export function interpolate(p1, p2, value) {
+  let dx = p2.x - p1.x;
+  let dy = p2.y - p1.y;
+
+  return {
+    x: p1.x + dx * value,
+    y: p1.y + dy * value,
+  };
+}

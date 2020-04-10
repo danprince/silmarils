@@ -81,4 +81,11 @@ describe("Point", () => {
       Point.ORIGIN.x += 1;
     }).toThrow();
   });
+
+  it("should interpolate new point between points", () => {
+    let p1 = Point.from(0, 0);
+    let p2 = Point.from(10, 10);
+    let p3 = Point.interpolate(p1, p2, 0.5);
+    expect(p3).toEqual({ x: 5, y: 5 });
+  });
 });
