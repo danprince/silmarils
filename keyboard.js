@@ -66,6 +66,8 @@ export class Keyboard {
      * @internal
      */
     this.handleEvent = this.handleEvent.bind(this);
+
+    this.addEventListeners();
   }
 
   /**
