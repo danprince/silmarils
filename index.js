@@ -8,6 +8,7 @@ import * as RNG from "./rng.js";
 import * as PRNG from "./prng.js";
 import * as Array2D from "./array-2d.js";
 import * as Direction from "./direction.js";
+import * as UID from "./uid.js";
 
 export {
   Point,
@@ -20,6 +21,7 @@ export {
   PRNG,
   Array2D,
   Direction,
+  UID,
 };
 
 export * from "./mouse.js";
