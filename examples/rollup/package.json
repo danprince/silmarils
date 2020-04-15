@@ -1,0 +1,10 @@
+{
+  "name": "silmarils-example-rollup",
+  "private": true,
+  "scripts": {
+    "build": "rollup --config rollup.config.js"
+  },
+  "devDependencies": {
+    "rollup": "^2.6.0"
+  }
+}
