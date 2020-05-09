@@ -1,10 +1,12 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "noEmit": true,
     "allowJs": true,
     "checkJs": true,
-    "outDir": "dist",
-    "esModuleInterop": true
-  }
+    "esModuleInterop": true,
+    "skipLibCheck": true
+  },
+  "exclude": [
+    "examples"
+  ]
 }
