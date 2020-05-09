@@ -21,6 +21,13 @@
     "typescript": "^3.8.3"
   },
   "jest": {
-    "preset": "ts-jest/presets/js-with-ts"
+    "preset": "ts-jest/presets/js-with-ts",
+    "globals": {
+      "ts-jest": {
+        "tsConfig": {
+          "outDir": "dist"
+        }
+      }
+    }
   }
 }
