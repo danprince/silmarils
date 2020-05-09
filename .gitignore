@@ -1,2 +1,7 @@
 *.log
 node_modules
+
+# ts generated files
+*.js
+*.d.ts
+*.d.ts.map

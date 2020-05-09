@@ -1,5 +1,5 @@
-import * as Vector from "./vector.js";
-import * as Point from "./point.js";
+import * as Vector from "./vector";
+import * as Point from "./point";
 
 describe("Vector", () => {
   it("should create a vector", () => {

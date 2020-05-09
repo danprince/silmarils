@@ -1,4 +1,4 @@
-import { Keyboard, KEY_ENTER, KEY_SHIFT, KEY_UP } from "./keyboard.js";
+import { Keyboard, KEY_ENTER, KEY_SHIFT, KEY_UP } from "./keyboard";
 
 describe("Keyboard", () => {
   it("should track state of pressed keys", () => {

@@ -1,6 +1,6 @@
-import * as Circle from "./circle.js";
-import * as Point from "./point.js";
-import * as Vector from "./vector.js";
+import * as Circle from "./circle";
+import * as Point from "./point";
+import * as Vector from "./vector";
 
 describe("Circle", () => {
   it("should create a circle", () => {

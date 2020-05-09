@@ -1,4 +1,4 @@
-import { Mouse, MOUSE_BUTTON_LEFT } from "./mouse.js";
+import { Mouse, MOUSE_BUTTON_LEFT } from "./mouse";
 
 describe("Mouse", () => {
   test("should respond to mousemove events", () => {

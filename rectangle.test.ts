@@ -1,6 +1,6 @@
-import * as Rectangle from "./rectangle.js";
-import * as Point from "./point.js";
-import * as Vector from "./vector.js";
+import * as Rectangle from "./rectangle";
+import * as Point from "./point";
+import * as Vector from "./vector";
 
 describe("Rectangle", () => {
   it("should create a rectangle", () => {

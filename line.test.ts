@@ -1,6 +1,6 @@
-import * as Line from "./line.js";
-import * as Point from "./point.js";
-import * as Vector from "./vector.js";
+import * as Line from "./line";
+import * as Point from "./point";
+import * as Vector from "./vector";
 
 describe("Line", () => {
   it("should create a line", () => {

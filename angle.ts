@@ -6,31 +6,22 @@ export const DEGREES_360 = Math.PI * 2;
 
 /**
  * Convert an angle in degrees to radians.
- *
- * @param {number} degrees
- * @return {number} radians
  */
-export function fromDegrees(degrees) {
+export function fromDegrees(degrees: number): number {
   return degrees * Math.PI / 180;
 }
 
 /**
  * Convert an angle in radians to degrees.
- *
- * @param {number} radians
- * @return {number} degrees
  */
-export function toDegrees(radians) {
+export function toDegrees(radians: number): number {
   return radians * (180 / Math.PI);
 }
 
 /**
  * Normalize an angle to the interval [0, 2π].
- *
- * @param {number} radians
- * @return {number}
  */
-export function normalize(radians) {
+export function normalize(radians: number): number{
   let normalized = radians % DEGREES_360;
 
   if (normalized < 0) {

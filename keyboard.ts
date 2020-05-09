@@ -56,17 +56,9 @@ export const KEY_Y = 89;
 export const KEY_Z = 90;
 
 export class Keyboard {
+  private pressed = new Set<string | number>();
+
   constructor() {
-    /**
-     * @private
-     */
-    this.pressed = new Set();
-
-    /**
-     * @internal
-     */
-    this.handleEvent = this.handleEvent.bind(this);
-
     this.addEventListeners();
   }
 
@@ -75,7 +67,7 @@ export class Keyboard {
    *
    * @param {number | string} keyCodeOrName
    */
-  isDown(keyCodeOrName) {
+  isDown(keyCodeOrName: number | string) {
     return this.pressed.has(keyCodeOrName);
   }
 
@@ -100,9 +92,8 @@ export class Keyboard {
 
   /**
    * @internal
-   * @param {KeyboardEvent} event
    */
-  handleEvent(event) {
+  private handleEvent = (event: KeyboardEvent) => {
     switch (event.type) {
       case "keydown":
         this.pressed.add(event.which);

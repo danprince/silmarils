@@ -1,18 +1,16 @@
 /**
- * @template T
- * @typedef Array2D
- * @property {number} width
- * @property {number} height
- * @property {T[]} data
+ *
  */
+export interface Array2D<T> {
+  width: number,
+  height: number,
+  data: T[],
+}
 
 /**
- * @template T
- * @param {number} width
- * @param {number} height
- * @return {Array2D<T>}
+ *
  */
-export function create(width, height) {
+export function create<T>(width: number, height: number): Array2D<T> {
   return {
     width: width,
     height: height,
@@ -21,11 +19,9 @@ export function create(width, height) {
 }
 
 /**
- * @template T
- * @param {Array2D<T>} array2D
- * @return {Array2D<T>}
+ *
  */
-export function clone(array2D) {
+export function clone<T>(array2D: Array2D<T>): Array2D<T> {
   return {
     width: array2D.width,
     height: array2D.height,
@@ -34,13 +30,13 @@ export function clone(array2D) {
 }
 
 /**
- * @template T
- * @param {number} width
- * @param {number} height
- * @param {T[]} array
- * @return {Array2D<T>}
+ *
  */
-export function fromArray(width, height, array) {
+export function fromArray<T>(
+  width: number,
+  height: number,
+  array: Array<T>
+): Array2D<T> {
   return {
     width: width,
     height: height,
@@ -49,20 +45,16 @@ export function fromArray(width, height, array) {
 }
 
 /**
- * @template T
- * @param {Array2D<T>} array2d
- * @return {T[]}
+ *
  */
-export function toArray(array2d) {
+export function toArray<T>(array2d: Array2D<T>): Array<T> {
   return array2d.data;
 }
 
 /**
- * @template T
- * @param {T[][]} array
- * @return {Array2D<T>}
+ *
  */
-export function from2DArray(array) {
+export function from2DArray<T>(array: T[][]): Array2D<T> {
   let height = array.length;
   let width = Math.max(...array.map(row => row.length));
   let data = new Array(width * height);
@@ -77,11 +69,9 @@ export function from2DArray(array) {
 }
 
 /**
- * @template T
- * @param {Array2D<T>} array2D
- * @return {T[][]}
+ *
  */
-export function to2DArray(array2D) {
+export function to2DArray<T>(array2D: Array2D<T>): T[][] {
   let array = new Array(array2D.height);
 
   for (let y = 0; y < array2D.height; y++) {
@@ -95,11 +85,9 @@ export function to2DArray(array2D) {
 }
 
 /**
- * @param {Array2D<any>} a1
- * @param {Array2D<any>} a2
- * @return {boolean}
+ *
  */
-export function equals(a1, a2) {
+export function equals<T>(a1: Array2D<T>, a2: Array2D<T>): boolean {
   if (a1.width !== a2.width || a1.height !== a2.height) {
     return false;
   }
@@ -114,13 +102,13 @@ export function equals(a1, a2) {
 }
 
 /**
- * @template T
- * @param {Array2D<T>} array2D
- * @param {number} x
- * @param {number} y
- * @return {T | undefined}
+ *
  */
-export function get(array2D, x, y) {
+export function get<T>(
+  array2D: Array2D<T>,
+  x: number,
+  y: number
+): T | undefined {
   if (x >= 0 && y >= 0 && x < array2D.width && y < array2D.height) {
     let i = x + y * array2D.width;
     return array2D.data[i];
@@ -128,14 +116,9 @@ export function get(array2D, x, y) {
 }
 
 /**
- * @template T
- * @param {Array2D<T>} array2D
- * @param {number} x
- * @param {number} y
- * @param {T} value
- * @return {void}
+ *
  */
-export function set(array2D, x, y, value) {
+export function set<T>(array2D: Array2D<T>, x: number, y: number, value: T) {
   if (x >= 0 && y >= 0 && x < array2D.width && y < array2D.height) {
     let i = x + y * array2D.width;
     array2D.data[i] = value;
@@ -143,22 +126,15 @@ export function set(array2D, x, y, value) {
 }
 
 /**
- * @template T
- * @param {Array2D<T>} array2D
- * @param {T} item
- * @param {number} [startX]
- * @param {number} [startY]
- * @param {number} [endX]
- * @param {number} [endY]
- * @return {void}
+ *
  */
-export function fill(
-  array2D,
-  item,
-  startX = 0,
-  startY = 0,
-  endX = array2D.width,
-  endY = array2D.height,
+export function fill<T>(
+  array2D: Array2D<T>,
+  item: T,
+  startX: number = 0,
+  startY: number = 0,
+  endX: number = array2D.width,
+  endY: number = array2D.height,
 ) {
   for (let i = startX; i < endX; i++) {
     for (let j = startY; j < endY; j++) {
@@ -168,23 +144,16 @@ export function fill(
 }
 
 /**
- * @template T
- * @param {Array2D<T>} array2D
- * @param {T} item
- * @param {number} [startX]
- * @param {number} [startY]
- * @param {number} [endX]
- * @param {number} [endY]
- * @return {Array2D<T>}
+ *
  */
-export function filled(
-  array2D,
-  item,
-  startX = 0,
-  startY = 0,
-  endX = array2D.width,
-  endY = array2D.height,
-) {
+export function filled<T>(
+  array2D: Array2D<T>,
+  item: T,
+  startX: number = 0,
+  startY: number = 0,
+  endX: number = array2D.width,
+  endY: number = array2D.height,
+): Array2D<T> {
   let out = clone(array2D);
 
   for (let i = startX; i < endX; i++) {
@@ -197,15 +166,15 @@ export function filled(
 }
 
 /**
- * @template T
- * @param {Array2D<T>} array2D
- * @param {number} x
- * @param {number} y
- * @param {number} width
- * @param {number} height
- * @return {Array2D<T>}
+ *
  */
-export function slice(array2D, x, y, width, height) {
+export function slice<T>(
+  array2D: Array2D<T>,
+  x: number,
+  y: number,
+  width: number,
+  height: number
+) {
   let newArray2D = create(width, height);
 
   for (let i = 0; i < width; i++) {
@@ -220,13 +189,12 @@ export function slice(array2D, x, y, width, height) {
 }
 
 /**
- * @template T
- * @template U
- * @param {Array2D<T>} array2D
- * @param {(item: T, x: number, y: number) => U} callback
- * @return {Array2D<U>}
+ *
  */
-export function map(array2D, callback) {
+export function map<T, U>(
+  array2D: Array2D<T>,
+  callback: (item: T, x: number, y: number) => U,
+): Array2D<U> {
   let data = array2D.data.map((value, index) => {
     let x = index % array2D.width;
     let y = Math.floor(index / array2D.width);
