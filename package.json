@@ -11,6 +11,7 @@
     "test": "jest",
     "declarations": "tsc --declaration --emitDeclarationOnly",
     "clean": "rm -f *.d.ts",
+    "docs": "typedoc --noEmit",
     "prepublishOnly": "yarn clean && yarn declarations",
     "postpublush": "yarn clean"
   },
