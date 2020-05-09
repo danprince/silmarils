@@ -8,5 +8,15 @@
   },
   "exclude": [
     "examples"
-  ]
+  ],
+  "typedocOptions": {
+    "mode": "library",
+    "inputFiles": "index.js",
+    "out": "docs",
+    "exclude": [
+      "**/*.test.js",
+      "examples",
+      "node_modules/**/*"
+    ]
+  }
 }
