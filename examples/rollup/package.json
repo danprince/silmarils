@@ -5,7 +5,8 @@
     "build": "rollup --config rollup.config.js"
   },
   "devDependencies": {
-    "rollup": "^2.6.0"
+    "rollup": "^2.6.0",
+    "rollup-plugin-node-resolve": "^5.2.0"
   },
   "dependencies": {
     "silmarils": "^0.0.0"
