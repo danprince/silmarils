@@ -1,6 +1,6 @@
-import * as Direction from "./direction.js";
-import * as Angle from "./angle.js";
-import * as Vector from "./vector.js";
+import * as Direction from "./direction";
+import * as Angle from "./angle";
+import * as Vector from "./vector";
 
 describe("Direction", () => {
   it("should have unique values for all directions", () => {
@@ -48,7 +48,7 @@ describe("Direction", () => {
     [450, Direction.EAST],
   ])(
     "should create approximate cardinal direction from %p degrees -> %p",
-    (degrees, direction) => {
+    (degrees, direction: Direction.Direction) => {
       let radians = Angle.fromDegrees(degrees);
       expect(Direction.cardinalFromAngle(radians)).toBe(direction);
     }
@@ -65,7 +65,7 @@ describe("Direction", () => {
     [Direction.NORTH_WEST, Math.PI * 1.75],
   ])(
     "should return angle for %p -> %p radians",
-    (/** @type {Direction.Direction} */direction, radians) => {
+    (direction: Direction.Direction, radians) => {
       expect(Direction.toAngle(direction)).toBeCloseTo(radians);
     }
   );
@@ -77,7 +77,7 @@ describe("Direction", () => {
     [Direction.SOUTH, [0, 1]],
   ])(
     "should create a unit vector direction %p -> %p",
-    (/** @type {Direction.Direction} */direction, vector) => {
+    (direction: Direction.Direction, vector) => {
       expect(Direction.toVector(direction)).toEqual(vector);
     }
   );
@@ -88,7 +88,7 @@ describe("Direction", () => {
     [[-3, -10], Direction.NORTH],
   ])(
     "should create a cardinal direction from a vector %p -> %p",
-    (/** @type {Vector.Vector} */vector, direction) => {
+    (vector: Vector.Vector, direction) => {
       expect(Direction.cardinalFromVector(vector)).toEqual(direction);
     }
   );

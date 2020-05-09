@@ -5,30 +5,20 @@ export const MOUSE_BUTTON_BACK = 3;
 export const MOUSE_BUTTON_FORWARD = 4;
 
 export class Mouse {
+  public x = NaN;
+  public y = NaN;
+  public deltaX = 0;
+  public deltaY = 0;
+  public wheelX = 0;
+  public wheelY = 0;
+  public wheelZ = 0;
+
+  public readonly element: HTMLElement;
+
+  private buttons = new Set<number>();
+
   constructor(element = document.body) {
-    this.x = NaN;
-    this.y = NaN;
-    this.deltaX = 0;
-    this.deltaY = 0;
-    this.wheelX = 0;
-    this.wheelY = 0;
-    this.wheelZ = 0;
-
-    /**
-     * @private
-     */
-    this.buttons = new Set();
-
-    /**
-     * @private
-     */
-    this.handleEvent = this.handleEvent.bind(this);
-
-    /**
-     * @readonly
-     */
     this.element = element;
-
     this.addEventListeners();
   }
 
@@ -64,9 +54,8 @@ export class Mouse {
 
   /**
    * @internal
-   * @param {MouseEvent} event
    */
-  handleEvent(event) {
+  private handleEvent = (event: MouseEvent) => {
     if (event instanceof MouseEvent) {
       switch (event.type) {
         case "mousemove": {

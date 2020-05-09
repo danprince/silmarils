@@ -1,4 +1,4 @@
-import * as Angle from "./angle.js";
+import * as Angle from "./angle";
 
 describe("Angle", () => {
   it("should convert from degrees", () => {

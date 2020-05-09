@@ -1,32 +1,27 @@
+import type { Point } from "./point";
+import type { Vector } from "./vector";
+
 /**
- * @typedef Line
- * @property {number} x1
- * @property {number} y1
- * @property {number} x2
- * @property {number} y2
+ *
  */
+export interface Line {
+  x1: number,
+  y1: number,
+  x2: number,
+  y2: number,
+}
 
 /**
  * Construct a line from the coordinates of its start and end.
- *
- * @param {number} x1
- * @param {number} y1
- * @param {number} x2
- * @param {number} y2
- * @return {Line}
  */
-export function from(x1, y1, x2, y2) {
+export function from(x1: number, y1: number, x2: number, y2: number): Line {
   return { x1, y1, x2, y2 };
 }
 
 /**
  * Construct a line from its start and end points.
- *
- * @param {import("./point").Point} p1
- * @param {import("./point").Point} p2
- * @return {Line}
  */
-export function fromPoints(p1, p2) {
+export function fromPoints(p1: Point, p2: Point): Line {
   return {
     x1: p1.x,
     y1: p1.y,
@@ -37,11 +32,8 @@ export function fromPoints(p1, p2) {
 
 /**
  * Create a copy of a line.
- *
- * @param {Line} line
- * @return {Line}
  */
-export function clone(line) {
+export function clone(line: Line): Line {
   return { x1: line.x1, y1: line.y1, x2: line.x2, y2: line.y2 };
 }
 
@@ -49,12 +41,8 @@ export function clone(line) {
  * Check whether two lines are equal.
  *
  * Lines are considered equal if they have the same start and end points.
- *
- * @param {Line} l1
- * @param {Line} l2
- * @return {boolean}
  */
-export function equals(l1, l2) {
+export function equals(l1: Line, l2: Line): boolean {
   return l1 === l2 || (
     l1.x1 === l2.x1 &&
     l1.y1 === l2.y1 &&
@@ -65,31 +53,22 @@ export function equals(l1, l2) {
 
 /**
  * Find the length of a line.
- *
- * @param {Line} line
- * @return {number}
  */
-export function length(line) {
+export function length(line: Line): number {
   return Math.hypot(line.x2 - line.x1, line.y2 - line.y1);
 }
 
 /**
  * Find the Manhattan distance of the line.
- *
- * @param {Line} line
- * @return {number}
  */
-export function manhattan(line) {
+export function manhattan(line: Line): number {
   return Math.abs(line.x2 - line.x1) + Math.abs(line.y2 - line.y1);
 }
 
 /**
  * Find the Chebyshev distance of the line.
- *
- * @param {Line} line
- * @return {number}
  */
-export function chebyshev(line) {
+export function chebyshev(line: Line): number {
   return Math.max(
     Math.abs(line.x2 - line.x1),
     Math.abs(line.y2 - line.y1)
@@ -98,21 +77,15 @@ export function chebyshev(line) {
 
 /**
  * Get the start point of a line.
- *
- * @param {Line} line
- * @return {import("./point").Point}
  */
-export function start(line) {
+export function start(line: Line): Point {
   return { x: line.x1, y: line.y1 };
 }
 
 /**
  * Get the center point of a line.
- *
- * @param {Line} line
- * @return {import("./point").Point}
  */
-export function center(line) {
+export function center(line: Line): Point {
   return {
     x: line.x1 + (line.x2 - line.x1) / 2,
     y: line.y1 + (line.y2 - line.y1) / 2,
@@ -121,11 +94,8 @@ export function center(line) {
 
 /**
  * Get the end point of a line.
- *
- * @param {Line} line
- * @return {import("./point").Point}
  */
-export function end(line) {
+export function end(line: Line): Point {
   return { x: line.x2, y: line.y2 };
 }
 
@@ -134,12 +104,8 @@ export function end(line) {
  *
  * This modifies the line. Use [[translated]] if you want to create
  * a new line.
- *
- * @param {Line} line
- * @param {import("./vector").Vector} vector
- * @return {void}
  */
-export function translate(line, vector) {
+export function translate(line: Line, vector: Vector) {
   line.x1 += vector[0];
   line.y1 += vector[1];
   line.x2 += vector[0];
@@ -151,12 +117,8 @@ export function translate(line, vector) {
  *
  * This creates a new line. Use [[translate]] if you want to modify
  * the line instead.
- *
- * @param {Line} line
- * @param {import("./vector").Vector} vector
- * @return {Line}
  */
-export function translated(line, vector) {
+export function translated(line: Line, vector: Vector): Line {
   return {
     x1: line.x1 + vector[0],
     y1: line.y1 + vector[1],

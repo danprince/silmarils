@@ -4,18 +4,13 @@
  *
  * This function only needs to be called once, and only after setting
  * the desired canvas width and height.
- *
- * @param {HTMLCanvasElement} canvas
- * @param {number} width
- * @param {number} height
- * @param {number} [resolution]
  */
 export function resize(
-  canvas,
-  width,
-  height,
-  resolution = window.devicePixelRatio
-) {
+  canvas: HTMLCanvasElement,
+  width: number,
+  height: number,
+  resolution: number = window.devicePixelRatio
+): [number, number] {
   canvas.style.width = `${width}px`;
   canvas.style.height = `${height}px`;
   canvas.width = width * resolution;
@@ -26,14 +21,11 @@ export function resize(
 
 /**
  * Resize a canvas to fill the screen.
- *
- * @param {HTMLCanvasElement} canvas
- * @param {number} resolution
  */
 export function resizeToFillScreen(
-  canvas,
-  resolution = window.devicePixelRatio
-) {
+  canvas: HTMLCanvasElement,
+  resolution: number = window.devicePixelRatio
+): [number, number] {
   return resize(
     canvas,
     window.innerWidth,

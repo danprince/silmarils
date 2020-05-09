@@ -1,30 +1,27 @@
+import type { Point } from "./point";
+import type { Vector } from "./vector";
+
 /**
- * @typedef Circle
- * @property {number} x
- * @property {number} y
- * @property {number} radius
+ *
  */
+export interface Circle {
+  x: number,
+  y: number,
+  radius: number,
+}
 
 /**
  * Construct a circle from the X and Y coordinates of its center and
  * it's radius.
- *
- * @param {number} x
- * @param {number} y
- * @param {number} radius
- * @return {Circle}
  */
-export function from(x, y, radius) {
+export function from(x: number, y: number, radius: number): Circle {
   return { x, y, radius };
 }
 
 /**
  * Create a copy of a circle that can be modified separately.
- *
- * @param {Circle} circle
- * @return {Circle}
  */
-export function clone(circle) {
+export function clone(circle: Circle): Circle {
   return {
     x: circle.x,
     y: circle.y,
@@ -37,12 +34,8 @@ export function clone(circle) {
  *
  * Circles are considered equal if their center coordinates and radii
  * are the same.
- *
- * @param {Circle} c1
- * @param {Circle} c2
- * @return {boolean}
  */
-export function equals(c1, c2) {
+export function equals(c1: Circle, c2: Circle): boolean {
   return c1 === c2 || (
     c1.x === c2.x &&
     c1.y === c2.y &&
@@ -52,54 +45,37 @@ export function equals(c1, c2) {
 
 /**
  * Calculate the diameter of the circle.
- *
- * @param {Circle} circle
- * @return {number}
  */
-export function diameter(circle) {
+export function diameter(circle: Circle): number {
   return circle.radius * 2;
 }
 
 /**
  * Calculate the area of the circle.
- *
- * @param {Circle} circle
- * @return {number}
  */
-export function area(circle) {
+export function area(circle: Circle): number {
   return Math.PI * Math.pow(circle.radius, 2);
 }
 
 /**
  * Get the point at the center of the circle.
- *
- * @param {Circle} circle
- * @return {import("./point").Point}
  */
-export function center(circle) {
+export function center(circle: Circle): Point {
   return { x: circle.x, y: circle.y };
 }
 
 /**
  * Check whether two circles intersect.
- *
- * @param {Circle} c1
- * @param {Circle} c2
- * @return {boolean}
  */
-export function intersects(c1, c2) {
+export function intersects(c1: Circle, c2: Circle): boolean {
   let distance = Math.hypot(c2.x - c1.x, c2.y - c1.y);
   return distance <= c1.radius + c2.radius;
 }
 
 /**
  * Check whether a circle contains a point.
- *
- * @param {Circle} circle
- * @param {import("./point").Point} point
- * @return {boolean}
  */
-export function contains(circle, point) {
+export function contains(circle: Circle, point: Point): boolean {
   return Math.hypot(circle.x - point.x, circle.y - point.y) <= circle.radius;
 }
 
@@ -108,12 +84,8 @@ export function contains(circle, point) {
  *
  * This modifies the circle. Use [[translated]] if you want to create
  * a new circle.
- *
- * @param {Circle} circle
- * @param {import("./vector").Vector} vector
- * @return {void}
  */
-export function translate(circle, vector) {
+export function translate(circle: Circle, vector: Vector) {
   circle.x += vector[0];
   circle.y += vector[1];
 }
@@ -123,12 +95,8 @@ export function translate(circle, vector) {
  *
  * This creates a new circle. Use [[translate]] if you want to modify
  * the circle instead.
- *
- * @param {Circle} circle
- * @param {import("./vector").Vector} vector
- * @return {Circle}
  */
-export function translated(circle, vector) {
+export function translated(circle: Circle, vector: Vector) {
   return {
     x: circle.x + vector[0],
     y: circle.y + vector[1],

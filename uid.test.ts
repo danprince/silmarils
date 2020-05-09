@@ -1,4 +1,4 @@
-import * as UID from "./uid.js";
+import * as UID from "./uid";
 
 describe("UID", () => {
   it("should generate unique sequential ids", () => {
