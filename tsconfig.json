@@ -1,20 +1,23 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "allowJs": true,
-    "checkJs": true,
+    "target": "es2015",
     "esModuleInterop": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "declaration": true,
+    "declarationMap": true
   },
+  "include": [
+    "**/*.ts"
+  ],
   "exclude": [
-    "examples"
+    "examples",
   ],
   "typedocOptions": {
     "mode": "library",
-    "inputFiles": "index.js",
+    "inputFiles": "index.ts",
     "out": "docs",
     "exclude": [
-      "**/*.test.js",
+      "**/*.test.ts",
       "examples",
       "node_modules/**/*"
     ]
