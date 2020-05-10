@@ -91,7 +91,7 @@ export function fromAngle(radians: number): Direction {
     case 5: return SOUTH_WEST;
     case 6: return WEST;
     case 7: return NORTH_WEST;
-    case 8: return NORTH;
+    default: return NORTH;
   }
 }
 
@@ -119,7 +119,7 @@ export function cardinalFromAngle(radians: number): CardinalDirection {
     case 1: return EAST;
     case 2: return SOUTH;
     case 3: return WEST;
-    case 4: return NORTH;
+    default: return NORTH;
   }
 }
 
@@ -189,7 +189,7 @@ export function fromVector(vector: Vector): Direction {
     case 5: return SOUTH_WEST;
     case 6: return WEST;
     case 7: return NORTH_WEST;
-    case 8: return NORTH;
+    default: return NORTH;
   }
 }
 

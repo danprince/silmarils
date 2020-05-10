@@ -28,7 +28,7 @@ describe("Direction", () => {
     [23, Direction.NORTH_EAST],
     [-90, Direction.WEST],
     [450, Direction.EAST],
-  ])(
+  ] as [number, Direction.Direction][])(
     "should create approximate direction from %p degrees -> %p",
     (degrees, direction) => {
       let radians = Angle.fromDegrees(degrees);
@@ -46,9 +46,9 @@ describe("Direction", () => {
     [23, Direction.NORTH],
     [-90, Direction.WEST],
     [450, Direction.EAST],
-  ])(
+  ] as [number, Direction.Direction][])(
     "should create approximate cardinal direction from %p degrees -> %p",
-    (degrees, direction: Direction.Direction) => {
+    (degrees, direction) => {
       let radians = Angle.fromDegrees(degrees);
       expect(Direction.cardinalFromAngle(radians)).toBe(direction);
     }
@@ -63,9 +63,9 @@ describe("Direction", () => {
     [Direction.SOUTH_WEST, Math.PI * 1.25],
     [Direction.WEST, Math.PI * 1.5],
     [Direction.NORTH_WEST, Math.PI * 1.75],
-  ])(
+  ] as [Direction.Direction, number][])(
     "should return angle for %p -> %p radians",
-    (direction: Direction.Direction, radians) => {
+    (direction, radians) => {
       expect(Direction.toAngle(direction)).toBeCloseTo(radians);
     }
   );
@@ -75,9 +75,9 @@ describe("Direction", () => {
     [Direction.EAST, [1, 0]],
     [Direction.WEST, [-1, 0]],
     [Direction.SOUTH, [0, 1]],
-  ])(
+  ] as [Direction.Direction, Vector.Vector][])(
     "should create a unit vector direction %p -> %p",
-    (direction: Direction.Direction, vector) => {
+    (direction, vector) => {
       expect(Direction.toVector(direction)).toEqual(vector);
     }
   );
@@ -86,9 +86,9 @@ describe("Direction", () => {
     [[0, -1], Direction.NORTH],
     [[0, -10], Direction.NORTH],
     [[-3, -10], Direction.NORTH],
-  ])(
+  ] as [Vector.Vector, Direction.Direction][])(
     "should create a cardinal direction from a vector %p -> %p",
-    (vector: Vector.Vector, direction) => {
+    (vector, direction) => {
       expect(Direction.cardinalFromVector(vector)).toEqual(direction);
     }
   );

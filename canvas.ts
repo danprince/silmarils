@@ -21,7 +21,7 @@ export function resize(
   canvas.style.height = `${height}px`;
   canvas.width = width * resolution;
   canvas.height = height * resolution;
-  canvas.getContext("2d").scale(resolution, resolution);
+  canvas.getContext("2d")?.scale(resolution, resolution);
   return [width, height];
 }
 
