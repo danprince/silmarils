@@ -1,7 +1,7 @@
 {
   "name": "silmarils",
   "description": "Utilities for building 2d games",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "main": "index.js",
   "module": "index.js",
   "repository": "git@github.com:danprince/silmarils.git",
