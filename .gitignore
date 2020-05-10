@@ -5,3 +5,6 @@ node_modules
 *.js
 *.d.ts
 *.d.ts.map
+
+# generated docs
+docs

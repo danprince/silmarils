@@ -1,3 +1,68 @@
+/**
+ * A class that listens for keyboard events and tracks the current
+ * state of pressed keys.
+ */
+export class Keyboard {
+  private pressed = new Set<string | number>();
+
+  constructor() {
+    this.addEventListeners();
+  }
+
+  /**
+   * Check whether a given key is down.
+   *
+   * ```typescript
+   * let keys = new Keyboard();
+   *
+   * keyboard.isDown("enter");
+   * // or
+   * keyboard.isDown(Keyboard.KEY_ENTER);
+   * ```
+   *
+   * @param keyCodeOrName The key code or name of a key
+   */
+  isDown(keyCodeOrName: number | string) {
+    return this.pressed.has(keyCodeOrName);
+  }
+
+  /**
+   * Add the appropriate keyboard event listeners.
+   *
+   * This method is called automatically when the keyboard is created.
+   */
+  addEventListeners() {
+    window.addEventListener("keydown", this.handleEvent);
+    window.addEventListener("keyup", this.handleEvent);
+  }
+
+  /**
+   * Remove the event listeners for the keyboard. This can be used to stop
+   * the keyboard processing events.
+   */
+  removeEventListeners() {
+    window.removeEventListener("keydown", this.handleEvent);
+    window.removeEventListener("keyup", this.handleEvent);
+  }
+
+  /**
+   * @internal
+   */
+  private handleEvent = (event: KeyboardEvent) => {
+    switch (event.type) {
+      case "keydown":
+        this.pressed.add(event.which);
+        this.pressed.add(event.key);
+        break;
+
+      case "keyup":
+        this.pressed.delete(event.which);
+        this.pressed.delete(event.key);
+        break;
+    }
+  }
+}
+
 export const KEY_BACKSPACE = 8;
 export const KEY_TAB = 9;
 export const KEY_ENTER = 13;
@@ -54,56 +119,3 @@ export const KEY_W = 87;
 export const KEY_X = 88;
 export const KEY_Y = 89;
 export const KEY_Z = 90;
-
-export class Keyboard {
-  private pressed = new Set<string | number>();
-
-  constructor() {
-    this.addEventListeners();
-  }
-
-  /**
-   * Check whether a given key is down.
-   *
-   * @param {number | string} keyCodeOrName
-   */
-  isDown(keyCodeOrName: number | string) {
-    return this.pressed.has(keyCodeOrName);
-  }
-
-  /**
-   * Add the appropriate keyboard event listeners.
-   *
-   * This method is called automatically when the keyboard is created.
-   */
-  addEventListeners() {
-    window.addEventListener("keydown", this.handleEvent);
-    window.addEventListener("keyup", this.handleEvent);
-  }
-
-  /**
-   * Remove the event listeners for the keyboard. This can be used to stop
-   * the keyboard processing events.
-   */
-  removeEventListeners() {
-    window.removeEventListener("keydown", this.handleEvent);
-    window.removeEventListener("keyup", this.handleEvent);
-  }
-
-  /**
-   * @internal
-   */
-  private handleEvent = (event: KeyboardEvent) => {
-    switch (event.type) {
-      case "keydown":
-        this.pressed.add(event.which);
-        this.pressed.add(event.key);
-        break;
-
-      case "keyup":
-        this.pressed.delete(event.which);
-        this.pressed.delete(event.key);
-        break;
-    }
-  }
-}

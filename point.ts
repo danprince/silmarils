@@ -15,22 +15,26 @@ export interface Point {
 export const ORIGIN = Object.freeze({ x: 0, y: 0 });
 
 /**
- * Construct a point from its X and Y coordinates.
+ * Creates a point from its X and Y coordinates.
+ *
+ * @category Constructor
  */
 export function from(x: number, y: number): Point {
   return { x, y };
 }
 
 /**
- * Create a copy of a point that can be modified separately.
+ * Creates a copy of `point`.
  */
 export function clone(point: Point): Point {
   return { x: point.x, y: point.y };
 }
 
 /**
- * Check whether two points are equal. Points are considered equal if
- * their X and Y coordinates are both equal.
+ * Determines whether `p1` and `p2` are equal.
+ *
+ * Points are considered equal if their X and Y coordinates are both
+ * equal.
  */
 export function equals(p1: Point, p2: Point): boolean {
   return p1 === p2 || (
@@ -40,30 +44,41 @@ export function equals(p1: Point, p2: Point): boolean {
 }
 
 /**
- * Calculate the Euclidean distance between two points.
+ * Calculates the [Euclidean distance](https://en.wikipedia.org/wiki/Euclidean_distance)
+ * between `p1` and `p2`.
+ *
+ * @category Distance
  */
 export function distance(p1: Point, p2: Point): number {
   return Math.hypot(p2.x - p1.x, p2.y - p1.y);
 }
 
 /**
- * Calculate the Manhattan distance between two points.
+ * Calculates the [Manhattan distance](https://en.wikipedia.org/wiki/Taxicab_geometry)
+ * between `p1` and `p2`.
+ *
+ * @category Distance
  */
 export function manhattan(p1: Point, p2: Point): number {
   return Math.abs(p2.x - p1.x) + Math.abs(p2.y - p1.y);
 }
 
 /**
- * Calculate the Chebyshev distance between two points.
+ * Calculates the [Chebyshev distance](https://en.wikipedia.org/wiki/Chebyshev_distance)
+ * between `p1` and `p2`.
+ *
+ * @category Distance
  */
 export function chebyshev(p1: Point, p2: Point) {
   return Math.max(Math.abs(p2.x - p1.x), Math.abs(p2.y - p1.y));
 }
 
 /**
- * Translate a point by a vector.
+ * Translates `point` by `vector`.
  *
- * This modifies the point. Use [[translated]] to create a new point.
+ * This modifies `point`. Use [[translated]] to create a new point.
+ *
+ * @category Transform
  */
 export function translate(point: Point, vector: Vector) {
   point.x += vector[0];
@@ -71,10 +86,12 @@ export function translate(point: Point, vector: Vector) {
 }
 
 /**
- * Translate a point by a vector.
+ * Translates `point` by `vector`.
  *
  * This creates a new point. Use [[translate]] if you want to modify
- * the point instead.
+ * `point` instead.
+ *
+ * @category Transform
  */
 export function translated(point: Point, vector: Vector) {
   return {
@@ -84,7 +101,7 @@ export function translated(point: Point, vector: Vector) {
 }
 
 /**
- * Interpolate a new point between on the line between two points.
+ * Interpolate a new point on the line between `p1` and `p2`.
  */
 export function interpolate(p1: Point, p2: Point, value: number) {
   let dx = p2.x - p1.x;

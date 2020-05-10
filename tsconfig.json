@@ -13,8 +13,6 @@
     "examples",
   ],
   "typedocOptions": {
-    "mode": "library",
-    "inputFiles": "index.ts",
     "out": "docs",
     "exclude": [
       "**/*.test.ts",

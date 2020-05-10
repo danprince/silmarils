@@ -1,3 +1,8 @@
+/**
+ * @hidden
+ * @packageDocumentation
+ */
+
 import * as Point from "./point";
 import * as Vector from "./vector";
 import * as Angle from "./angle";

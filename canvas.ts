@@ -2,8 +2,14 @@
  * Resize a canvas for drawing at the appropriate resolution for the
  * current device. This prevents blurry rendering on retina displays.
  *
- * This function only needs to be called once, and only after setting
- * the desired canvas width and height.
+ * __Note__: This function scales the context to match the device's
+ * pixel ratio. When `resolution > 1` the `width` and `height`
+ * properties on `canvas` will be scaled too.
+ *
+ * @param canvas https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement
+ * @param width The desired width in pixels
+ * @param height The desired height in pixels
+ * @return The width and height of the canvas
  */
 export function resize(
   canvas: HTMLCanvasElement,
@@ -21,6 +27,8 @@ export function resize(
 
 /**
  * Resize a canvas to fill the screen.
+ *
+ * See [[resize]].
  */
 export function resizeToFillScreen(
   canvas: HTMLCanvasElement,

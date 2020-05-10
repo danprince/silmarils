@@ -8,6 +8,20 @@ describe("Array2D", () => {
     expect(a.data).toEqual(new Array(6));
   });
 
+  it("should throw if array has negative dimensions", () => {
+    expect(() => {
+      Array2D.create(-2, 1);
+    }).toThrow();
+
+    expect(() => {
+      Array2D.create(2, -1);
+    }).toThrow();
+
+    expect(() => {
+      Array2D.create(-2, -1);
+    }).toThrow();
+  });
+
   it("should clone an array2d", () => {
     let a1 = Array2D.create(2, 3);
     let a2 = Array2D.clone(a1);

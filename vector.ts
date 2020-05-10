@@ -6,14 +6,18 @@ import type { Point } from "./point";
 export type Vector = [number, number];
 
 /**
- * Create a vector from X and Y components.
+ * Creates a vector from X and Y components.
+ *
+ * @category Constructors
  */
 export function from(x: number, y: number): Vector {
   return [x, y];
 }
 
 /**
- * Create a vector from start and end points.
+ * Creates a vector from `start` and `end` points.
+ *
+ * @category Constructors
  */
 export function fromPoints(start: Point, end: Point): Vector {
   return [
@@ -23,7 +27,10 @@ export function fromPoints(start: Point, end: Point): Vector {
 }
 
 /**
- * Create a vector from an angle and a length.
+ * Creates a vector from an angle and a length.
+ *
+ * @category Constructors
+ * @param radians Angle in radians
  */
 export function fromAngle(radians: number, length: number) {
   return [
@@ -33,36 +40,47 @@ export function fromAngle(radians: number, length: number) {
 }
 
 /**
- * Create a copy of a vector that can be modified separately.
+ * Creates a copy of `vector` that can be modified separately.
+ *
+ * @category Constructors
  */
 export function clone(vector: Vector): Vector {
   return [vector[0], vector[1]];
 }
 
 /**
- * Check whether two vectors are equal. Vectors are equal if both of
- * their components are the same.
+ * Check whether `v1` and `v2` are equal.
+ *
+ * Vectors are equal if both of their components are the equal.
  */
 export function equals(v1: Vector, v2: Vector): boolean {
   return v1 === v2 || (v1[0] === v2[0] && v1[1] === v2[1]);
 }
 
 /**
- * Calculate the magnitude of a vector.
+ * Calculates the magnitude of a vector.
+ *
+ * @category Length
  */
 export function length(vector: Vector): number {
   return Math.hypot(vector[0], vector[1]);
 }
 
 /**
- * Find the Manhattan distance of the vector.
+ * Calculates the [Manhattan distance](https://en.wikipedia.org/wiki/Taxicab_geometry)
+ * of `vector`.
+ *
+ * @category Length
  */
 export function manhattan(vector: Vector): number {
   return Math.abs(vector[0]) + Math.abs(vector[1]);
 }
 
 /**
- * Find the Chebyshev distance of the vector.
+ * Calculates the [Chebyshev distance](https://en.wikipedia.org/wiki/Chebyshev_distance)
+ * of `vector`.
+ *
+ * @category Length
  */
 export function chebyshev(vector: Vector): number {
   return Math.max(
@@ -72,14 +90,14 @@ export function chebyshev(vector: Vector): number {
 }
 
 /**
- * Calculate the dot product of two vectors.
+ * Calculates the dot product of `v1` and `v2`.
  */
 export function dot(v1: Vector, v2: Vector): number {
   return v1[0] * v2[0] + v1[1] * v2[1];
 }
 
 /**
- * Adds two vectors.
+ * Adds `v1` and `v2` to create a new vector.
  */
 export function add(v1: Vector, v2: Vector): Vector {
   return [
@@ -89,7 +107,7 @@ export function add(v1: Vector, v2: Vector): Vector {
 }
 
 /**
- * Subtracts the second vector from the first.
+ * Subtracts `v2` from `v1` to create a new vector.
  */
 export function subtract(v1: Vector, v2: Vector): Vector {
   return [
@@ -99,7 +117,7 @@ export function subtract(v1: Vector, v2: Vector): Vector {
 }
 
 /**
- * Multiplies two vectors.
+ * Multiplies `v1` and `v2` to create a new vector.
  */
 export function multiply(v1: Vector, v2: Vector): Vector {
   return [
@@ -109,7 +127,7 @@ export function multiply(v1: Vector, v2: Vector): Vector {
 }
 
 /**
- * Divides two vectors.
+ * Divides `v1` by `v2` to create a new vector.
  */
 export function divide(v1: Vector, v2: Vector): Vector {
   return [
@@ -119,9 +137,9 @@ export function divide(v1: Vector, v2: Vector): Vector {
 }
 
 /**
- * Normalize a vector to have a length of 1.
+ * Normalizes `vector` to have a [[length]] of 1.
  *
- * This function modifies the vector. Use [[normalized]] if you want to
+ * This function modifies `vector`. Use [[normalized]] if you want to
  * produce a new vector.
  */
 export function normalize(vector: Vector) {
@@ -131,10 +149,9 @@ export function normalize(vector: Vector) {
 }
 
 /**
- * Construct a new normalized vector.
+ * Creates a new vector by normalizing `vector`.
  *
- * This function produces a new vector. Use [[normalize]] if you want to
- * modify the vector in place.
+ * Use [[normalize]] if you want to normalize `vector` in place.
  */
 export function normalized(vector: Vector): Vector {
   let len = 1 / Math.hypot(vector[0], vector[1]);
@@ -146,10 +163,13 @@ export function normalized(vector: Vector): Vector {
 }
 
 /**
- * Rotate a vector.
+ * Rotates `vector`.
  *
- * This function modifies the vector. Use [[rotated]] if you want to
+ * This function modifies `vector`. Use [[rotated]] if you want to
  * produce a new vector.
+ *
+ * @category Transform
+ * @param radians Rotation angle in radians
  */
 export function rotate(vector: Vector, radians: number) {
   let cos = Math.cos(radians);
@@ -159,10 +179,12 @@ export function rotate(vector: Vector, radians: number) {
 }
 
 /**
- * Construct a new rotated vector.
+ * Creates a new rotated vector.
  *
- * This function produces a new vector. Use [[rotate]] if you want to
- * modify the vector in place.
+ * Use [[rotate]] if you want to rotate `vector` in place.
+ *
+ * @category Transform
+ * @param radians Rotation angle in radians
  */
 export function rotated(vector: Vector, radians: number): Vector {
   let cos = Math.cos(radians);
@@ -175,10 +197,13 @@ export function rotated(vector: Vector, radians: number): Vector {
 }
 
 /**
- * Scale a vector.
+ * Scales a vector in-place.
  *
- * This function modifies the vector. Use [[scaled]] if you want to
+ * This function modifies `vector`. Use [[scaled]] if you want to
  * produce a new vector.
+ *
+ * @category Transform
+ * @param scale Scaling factor
  */
 export function scale(vector: Vector, scale: number) {
   vector[0] *= scale;
@@ -186,10 +211,13 @@ export function scale(vector: Vector, scale: number) {
 }
 
 /**
- * Construct a new scaled vector.
+ * Creates a new scaled vector.
  *
  * This function produces a new vector. Use [[scale]] if you want to
- * modify the vector in place.
+ * scale `vector` in-place.
+ *
+ * @category Transform
+ * @param scale Scaling factor
  */
 export function scaled(vector: Vector, scale: number): Vector {
   return [

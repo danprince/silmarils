@@ -1,25 +1,71 @@
 /**
+ * The interface for 2D arrays.
  *
+ * @template T The type of the items inside the array
  */
 export interface Array2D<T> {
-  width: number,
-  height: number,
+  /**
+   * The width of the array in columns. Cannot be negative.
+   */
+  readonly width: number,
+
+  /**
+   * The height of the array in rows. Cannot be negative.
+   */
+  readonly height: number,
+
+  /**
+   * A flat array of items in [row-major order](https://en.wikipedia.org/wiki/Row-_and_column-major_order).
+   * The length of this array should be equal to [[`width`]] × [[`height`]].
+   */
   data: T[],
 }
 
 /**
+ * Creates an empty [[Array2D]] with fixed dimensions and an optional
+ * initial value for each element.
  *
+ * ```typescript
+ * // create an array with width = 3 and height = 6
+ * Array2D.create(3, 6)
+ *
+ * // create an array with width = 2, height = 2, filled with "a"
+ * Array2D.create(2, 2, "a")
+ * ```
+ *
+ * @category Constructor
+ * @template T The type of the elements in the array
+ * @return The new array
  */
-export function create<T>(width: number, height: number): Array2D<T> {
+export function create<T>(
+  width: number,
+  height: number,
+  initial?: T
+): Array2D<T> {
+  if (width < 0 || height < 0) {
+    throw new Error("Array2D dimensions must not be negative!");
+  }
+
   return {
     width: width,
     height: height,
-    data: new Array(width * height),
+    data: new Array(width * height).fill(initial),
   };
 }
 
 /**
+ * Creates a new [[Array2D]] by shallowly cloning an existing one.
  *
+ * ```typescript
+ * let a1 = Array2D.create(10, 10);
+ *
+ * // create a copy of an existing Array2D
+ * let a2 = Array2D.clone(a1);
+ * ```
+ *
+ * @template T The type of the elements in the array
+ * @param array2D The array to clone
+ * @return The cloned array
  */
 export function clone<T>(array2D: Array2D<T>): Array2D<T> {
   return {
@@ -30,7 +76,24 @@ export function clone<T>(array2D: Array2D<T>): Array2D<T> {
 }
 
 /**
+ * Creates an [[Array2D]] from a one dimensional array in [row-major order](https://en.wikipedia.org/wiki/Row-_and_column-major_order).
  *
+ * ```typescript
+ * let map = [
+ *   0, 1, 0,
+ *   1, 1, 1,
+ *   0, 0, 0,
+ * ];
+ *
+ * Array2D.fromArray(map, 3, 3);
+ * ```
+ *
+ * @category Conversion
+ * @template T The type of the elements in the array
+ * @param width The width of the array in columns
+ * @param height The height of the array in rows
+ * @param array The one dimensional array. The length of `array` should be equal to `width * height`
+ * @return The new array
  */
 export function fromArray<T>(
   width: number,
@@ -45,14 +108,48 @@ export function fromArray<T>(
 }
 
 /**
+ * Creates a one dimensional array in [row-major order](https://en.wikipedia.org/wiki/Row-_and_column-major_order).
+ * from an [[Array2D]].
  *
+ * ```typescript
+ * let map = Array2D.create(2, 2, 0);
+ *
+ * Array2D.toArray(map) // [0, 0, 0, 0]
+ * ```
+ *
+ * @category Conversion
+ * @template T The type of the elements in the array
+ * @param array2d The source [[Array2D]]
+ * @return The new one dimensional array
  */
-export function toArray<T>(array2d: Array2D<T>): Array<T> {
-  return array2d.data;
+export function toArray<T>(array2D: Array2D<T>): Array<T> {
+  return Array.from(array2D.data);
 }
 
 /**
+ * Creates an [[Array2D]] from a two dimensional array.
  *
+ * Each element in `array` corresponds to a row in the returned array.
+ *
+ * The `height` will be the number or rows and the `width` will be the
+ * length of the longest row.
+ *
+ * ```typescript
+ * let map = [
+ *   [0, 1, 0],
+ *   [1, 1, 1],
+ *   [0, 0, 0],
+ * ];
+ *
+ * Array2D.from2DArray(map)
+ * ```
+ *
+ * If you want to create an [[Array2D]] from a one dimensional (flat)
+ * array, then use [[fromArray]] instead.
+ *
+ * @category Conversion
+ * @template T The type of the elements in `array`
+ * @param array The two-dimensional array
  */
 export function from2DArray<T>(array: T[][]): Array2D<T> {
   let height = array.length;
@@ -69,7 +166,17 @@ export function from2DArray<T>(array: T[][]): Array2D<T> {
 }
 
 /**
+ * Creates a two dimensional array from `array2D`.
  *
+ * ```typescript
+ * let map = Array2D.create(2, 2, 0);
+ *
+ * Array2D.to2DArray(map) // [[0, 0], [0, 0]]
+ * ```
+ *
+ * @category Conversion
+ * @template T The type of the elements in `array2D`
+ * @return The two dimensional array
  */
 export function to2DArray<T>(array2D: Array2D<T>): T[][] {
   let array = new Array(array2D.height);
@@ -85,7 +192,21 @@ export function to2DArray<T>(array2D: Array2D<T>): T[][] {
 }
 
 /**
+ * Performs a shallow comparison to determine whether `a1` and `a2` are
+ * equivalent.
  *
+ * ```typescript
+ * let a1 = Array2D.create(2, 2, 0);
+ * let a2 = Array2D.create(2, 2, 0);
+ *
+ * Array2D.equals(a1, a2) // true
+ * ```
+ *
+ * [[Array2D]] objects are considered to be equivalent if:
+ * - They have the same dimensions
+ * - They have the same elements in the same order
+ *
+ * @template T The type of the elements in `a1` _and_ `a2`
  */
 export function equals<T>(a1: Array2D<T>, a2: Array2D<T>): boolean {
   if (a1.width !== a2.width || a1.height !== a2.height) {
@@ -102,7 +223,19 @@ export function equals<T>(a1: Array2D<T>, a2: Array2D<T>): boolean {
 }
 
 /**
+ * Gets the element at the given indices.
  *
+ * ```typescript
+ * let a = Array2D.create(2, 2, 0);
+ *
+ * // get the element at 0, 0
+ * Array2D.get(a, 0, 0)
+ * ```
+ *
+ * @template T The type of the elements in `array2D`
+ * @param x The x index
+ * @param y The y index
+ * @return The element (or undefined if the indices were out of bounds).
  */
 export function get<T>(
   array2D: Array2D<T>,
@@ -116,7 +249,19 @@ export function get<T>(
 }
 
 /**
+ * Sets the element at the given indices.
  *
+ * ```typescript
+ * let a = Array2D.create(2, 2);
+ *
+ * // set the element at 0, 0 to "a"
+ * Array2D.set(a, 0, 0, "a")
+ * ```
+ *
+ * @template T The type of the elements in `array2D`
+ * @param x The x index
+ * @param y The y index
+ * @param value The value to insert
  */
 export function set<T>(array2D: Array2D<T>, x: number, y: number, value: T) {
   if (x >= 0 && y >= 0 && x < array2D.width && y < array2D.height) {
@@ -126,11 +271,35 @@ export function set<T>(array2D: Array2D<T>, x: number, y: number, value: T) {
 }
 
 /**
+ * Fills the elements of `array2D` with `value`.
  *
+ * Can optionally fill a subrectangle within the [[Array2D]] by passing
+ * start and end coordinates.
+ *
+ * ```typescript
+ * let a = Array2D.create(3, 3, "a");
+ *
+ * // fill with "b"
+ * Array2D.fill(a, "b");
+ *
+ * // fill the top left quarter with "c"
+ * Array2D.fill(a, "c", 0, 0, 2, 2);
+ * ```
+ *
+ * This function modifies `array2D`. Use [[filled]] to create a new
+ * [[Array2D]] instead.
+ *
+ * @template T The type of the elements in `array2D`
+ * @param array2D The array to fill
+ * @param value The value to fill `array2D` with
+ * @param startX The x coordinate to start filling from
+ * @param startY The y coordinate to start filling from
+ * @param endX The x coordinate to finish filling before
+ * @param endY The y coordinate to finish filling before
  */
 export function fill<T>(
   array2D: Array2D<T>,
-  item: T,
+  value: T,
   startX: number = 0,
   startY: number = 0,
   endX: number = array2D.width,
@@ -138,17 +307,42 @@ export function fill<T>(
 ) {
   for (let i = startX; i < endX; i++) {
     for (let j = startY; j < endY; j++) {
-      array2D.data[i + j * array2D.width] = item;
+      array2D.data[i + j * array2D.width] = value;
     }
   }
 }
 
 /**
+ * Creates a new [[Array2D]] by filling a copy of `array2D` with `value`.
  *
+ * Can optionally fill a subrectangle within the [[Array2D]] by passing
+ * the start and end coordinates.
+ *
+ * ```typescript
+ * let a = Array2D.create(3, 3, "a");
+ *
+ * // fill with "b"
+ * let b = Array2D.fill(a, "b");
+ *
+ * // fill the top left quarter with "c"
+ * let c = Array2D.fill(a, "c", 0, 0, 2, 2);
+ * ```
+ *
+ * This function creates a new [[Array2D]]. Use [[fill]] to modify the
+ * existing one instead.
+ *
+ * @template T The element type of `array2D`
+ * @param array2D The array to fill
+ * @param value The value to fill `array2D` with
+ * @param startX The x coordinate to start filling from
+ * @param startY The y coordinate to start filling from
+ * @param endX The x coordinate to finish filling before
+ * @param endY The y coordinate to finish filling before
+ * @return The filled array2D
  */
 export function filled<T>(
   array2D: Array2D<T>,
-  item: T,
+  value: T,
   startX: number = 0,
   startY: number = 0,
   endX: number = array2D.width,
@@ -158,7 +352,7 @@ export function filled<T>(
 
   for (let i = startX; i < endX; i++) {
     for (let j = startY; j < endY; j++) {
-      out.data[i + j * array2D.width] = item;
+      out.data[i + j * array2D.width] = value;
     }
   }
 
@@ -166,7 +360,21 @@ export function filled<T>(
 }
 
 /**
+ * Creates an [[Array2D]] from rectangular slice of `array2d`.
  *
+ * ```typescript
+ * let a1 = Array2D.create(10, 10, "a");
+ *
+ * // Copy the top left slice into a new Array2D
+ * let a2 = Array2D.slice(a1, 0, 0, 5, 5);
+ * ```
+ *
+ * @template T The element type of `array2D`
+ * @param x The top left x coordinate of the slice
+ * @param y The top left y coordinate of the slice
+ * @param width The width of the slice
+ * @param height The height of the slice
+ * @return The sliced rectangle as an [[Array2D]]
  */
 export function slice<T>(
   array2D: Array2D<T>,
@@ -189,7 +397,25 @@ export function slice<T>(
 }
 
 /**
+ * Maps over `array2D` with a function to create a new [[Array2D]].
  *
+ * This works like [`Array.prototype.map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
+ * but rather than having a single index passed into the callback, both
+ * x and y coordinates are provided.
+ *
+ * ```typescript
+ * let a = Array2D.from2DArray([
+ *   [0, 1, 2],
+ *   [3, 4, 5]
+ * ]);
+ *
+ * // Create a new Array2D by incrementing the value of each element
+ * let b = Array2D.map(a, n => n + 1);
+ * ```
+ *
+ * @template T The element type of `array2D`
+ * @template U The element type of the returned [[Array2D]]
+ * @param callback A function that takes a value of type `T` and returns a value of type `U`
  */
 export function map<T, U>(
   array2D: Array2D<T>,

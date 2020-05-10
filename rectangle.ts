@@ -5,14 +5,31 @@ import type { Vector } from "./vector";
  *
  */
 export interface Rectangle {
+  /**
+   * The x coordinate of the top left corner of the rectangle.
+   */
   x: number,
+
+  /**
+   * The y coordinate of the top left corner of the rectangle.
+   */
   y: number,
+
+  /**
+   * The width of the rectangle.
+   */
   width: number,
+
+  /**
+   * The height of the rectangle.
+   */
   height: number,
 }
 
 /**
- * Construct a rectangle from x and y coordinates and a width and height.
+ * Creates a rectangle from x and y coordinates and a width and height.
+ *
+ * @category Constructor
  */
 export function from(
   x: number,
@@ -24,8 +41,9 @@ export function from(
 }
 
 /**
- * Construct a rectangle from its bounds.
+ * Creates a rectangle from its bounds.
  *
+ * @category Constructor
  * @param x1 The left coordinate
  * @param y1 The top coordinate
  * @param x2 The right coordinate
@@ -37,6 +55,8 @@ export function fromBounds(
   x2: number,
   y2: number
 ): Rectangle {
+  // TODO: Need to ensure the rectangle doesn't have negative
+  // dimensions.
   return {
     x: x1,
     y: y1,
@@ -46,7 +66,12 @@ export function fromBounds(
 }
 
 /**
- * Construct a rectangle from two points.
+ * Creates a rectangle from two points.
+ *
+ * If necessary the coordinates will be flipped to ensure that the
+ * resulting rectangle does not have negative dimensions.
+ *
+ * @category Constructor
  */
 export function fromPoints(p1: Point, p2: Point): Rectangle {
   let x1 = Math.min(p1.x, p2.x);
@@ -63,7 +88,7 @@ export function fromPoints(p1: Point, p2: Point): Rectangle {
 }
 
 /**
- * Create a copy of a rectangle that can be modified separately.
+ * Creates a copy of `rectangle` that can be modified separately.
  */
 export function clone(rectangle: Rectangle): Rectangle {
   return {
@@ -75,8 +100,10 @@ export function clone(rectangle: Rectangle): Rectangle {
 }
 
 /**
- * Check whether two rectangles are equal. Rectangles are considered
- * equal if they have the same coordinates and dimensions.
+ * Determines whether `r1` and `r2` are equal.
+ *
+ * Rectangles are considered equal if they have the same coordinates
+ * and dimensions.
  */
 export function equals(r1: Rectangle, r2: Rectangle): boolean {
   return r1 === r2 || (
@@ -88,14 +115,16 @@ export function equals(r1: Rectangle, r2: Rectangle): boolean {
 }
 
 /**
- * Calculate the area of a rectangle.
+ * Calculates the area of `rectangle`.
  */
 export function area(rectangle: Rectangle): number {
   return rectangle.width * rectangle.height;
 }
 
 /**
- * Get the center point of a rectangle.
+ * Gets the center point of `rectangle`.
+ *
+ * @category Points
  */
 export function center(rectangle: Rectangle): Point {
   return {
@@ -105,7 +134,9 @@ export function center(rectangle: Rectangle): Point {
 }
 
 /**
- * Get the top left point of a rectangle.
+ * Gets the top left point of `rectangle`.
+ *
+ * @category Points
  */
 export function topLeft(rectangle: Rectangle): Point {
   return {
@@ -115,7 +146,9 @@ export function topLeft(rectangle: Rectangle): Point {
 }
 
 /**
- * Get the top right point of a rectangle.
+ * Gets the top right point of `rectangle`.
+ *
+ * @category Points
  */
 export function topRight(rectangle: Rectangle): Point {
   return {
@@ -125,7 +158,9 @@ export function topRight(rectangle: Rectangle): Point {
 }
 
 /**
- * Get the bottom left point of a rectangle.
+ * Gets the bottom left point of `rectangle`.
+ *
+ * @category Points
  */
 export function bottomLeft(rectangle: Rectangle): Point {
   return {
@@ -135,7 +170,9 @@ export function bottomLeft(rectangle: Rectangle): Point {
 }
 
 /**
- * Get the bottom right point of a rectangle.
+ * Gets the bottom right point of `rectangle`.
+ *
+ * @category Points
  */
 export function bottomRight(rectangle: Rectangle): Point {
   return {
@@ -145,7 +182,7 @@ export function bottomRight(rectangle: Rectangle): Point {
 }
 
 /**
- * Check whether two rectangles intersect.
+ * Determines whether `r1` and `r2` intersect.
  */
 export function intersects(r1: Rectangle, r2: Rectangle): boolean {
   return (
@@ -157,7 +194,7 @@ export function intersects(r1: Rectangle, r2: Rectangle): boolean {
 }
 
 /**
- * Check whether a rectangle contains a point.
+ * Determines whether `rectangle` contains `point`.
  */
 export function contains(rectangle: Rectangle, point: Point): boolean {
   return (
@@ -169,10 +206,12 @@ export function contains(rectangle: Rectangle, point: Point): boolean {
 }
 
 /**
- * Translate a rectangle by a vector.
+ * Translate `rectangle` by a `vector`.
  *
- * This modifies the rectangle. Use [[translated]] if you want to create
- * a new rectangle.
+ * This modifies `rectangle`. Use [[`translated`]] if you want to
+ * create a new rectangle.
+ *
+ * @category Transform
  */
 export function translate(rectangle: Rectangle, vector: Vector) {
   rectangle.x += vector[0];
@@ -180,10 +219,11 @@ export function translate(rectangle: Rectangle, vector: Vector) {
 }
 
 /**
- * Translate a rectangle by a vector.
+ * Creates a new rectangle by translating `rectangle` by `vector`.
  *
- * This creates a new rectangle. Use [[translate]] if you want to modify
- * the rectangle instead.
+ * Use [[`translate`]] if you want to modify `rectangle` instead.
+ *
+ * @category Transform
  */
 export function translated(rectangle: Rectangle, vector: Vector): Rectangle {
   return {

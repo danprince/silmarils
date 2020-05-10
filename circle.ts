@@ -5,21 +5,33 @@ import type { Vector } from "./vector";
  *
  */
 export interface Circle {
+  /**
+   * The x coordinate for the center of the circle
+   */
   x: number,
+
+  /**
+   * The y coordinate for the center of the circle
+   */
   y: number,
+
+  /**
+   * The radius of the circle
+   */
   radius: number,
 }
 
 /**
- * Construct a circle from the X and Y coordinates of its center and
- * it's radius.
+ * Creates a circle given the x, y coordinates of the center and its radius.
+ *
+ * @category Constructor
  */
 export function from(x: number, y: number, radius: number): Circle {
   return { x, y, radius };
 }
 
 /**
- * Create a copy of a circle that can be modified separately.
+ * Creates a copy of `circle` that can be modified separately.
  */
 export function clone(circle: Circle): Circle {
   return {
@@ -30,7 +42,7 @@ export function clone(circle: Circle): Circle {
 }
 
 /**
- * Check whether two circles are equal.
+ * Determines whether `c1` and `c2` are equal.
  *
  * Circles are considered equal if their center coordinates and radii
  * are the same.
@@ -44,28 +56,28 @@ export function equals(c1: Circle, c2: Circle): boolean {
 }
 
 /**
- * Calculate the diameter of the circle.
+ * Calculates the diameter of `circle`.
  */
 export function diameter(circle: Circle): number {
   return circle.radius * 2;
 }
 
 /**
- * Calculate the area of the circle.
+ * Calculates the area of `circle`.
  */
 export function area(circle: Circle): number {
   return Math.PI * Math.pow(circle.radius, 2);
 }
 
 /**
- * Get the point at the center of the circle.
+ * Gets the [[Point]] at the center of `circle`.
  */
 export function center(circle: Circle): Point {
   return { x: circle.x, y: circle.y };
 }
 
 /**
- * Check whether two circles intersect.
+ * Determines whether `c1` and `c2` intersect.
  */
 export function intersects(c1: Circle, c2: Circle): boolean {
   let distance = Math.hypot(c2.x - c1.x, c2.y - c1.y);
@@ -73,17 +85,19 @@ export function intersects(c1: Circle, c2: Circle): boolean {
 }
 
 /**
- * Check whether a circle contains a point.
+ * Determines whether `circle` contains `point`.
  */
 export function contains(circle: Circle, point: Point): boolean {
   return Math.hypot(circle.x - point.x, circle.y - point.y) <= circle.radius;
 }
 
 /**
- * Translate a circle by a vector.
+ * Translates `circle` by `vector`.
  *
  * This modifies the circle. Use [[translated]] if you want to create
  * a new circle.
+ *
+ * @category Transform
  */
 export function translate(circle: Circle, vector: Vector) {
   circle.x += vector[0];
@@ -91,10 +105,13 @@ export function translate(circle: Circle, vector: Vector) {
 }
 
 /**
- * Translate a circle by a vector.
+ * Translates a circle by a vector.
  *
  * This creates a new circle. Use [[translate]] if you want to modify
  * the circle instead.
+ *
+ * @category Transform
+ * @return The translated circle
  */
 export function translated(circle: Circle, vector: Vector) {
   return {

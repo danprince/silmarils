@@ -4,15 +4,48 @@ export const MOUSE_BUTTON_RIGHT = 2;
 export const MOUSE_BUTTON_BACK = 3;
 export const MOUSE_BUTTON_FORWARD = 4;
 
+/**
+ * A class that tracks the mouse position, wheel, and buttons.
+ */
 export class Mouse {
+  /**
+   * The x coordinate of the mouse relative to [[element]].
+   */
   public x = NaN;
+
+  /**
+   * The x coordinate of the mouse relative to [[element]].
+   */
   public y = NaN;
+
+  /**
+   * The x distance moved since the previous mouse event.
+   */
   public deltaX = 0;
+
+  /**
+   * The y distance moved since the previous mouse event.
+   */
   public deltaY = 0;
+
+  /**
+   * The x distanced scrolled during the current wheel event.
+   */
   public wheelX = 0;
+
+  /**
+   * The y distance scrolled during the current wheel event.
+   */
   public wheelY = 0;
+
+  /**
+   * The z distance scrolled (zoomed) during the current wheel event.
+   */
   public wheelZ = 0;
 
+  /**
+   * The element that the mouse position is calculated relative to.
+   */
   public readonly element: HTMLElement;
 
   private buttons = new Set<number>();
