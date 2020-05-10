@@ -54,19 +54,51 @@ describe("Vector", () => {
   });
 
   it("should add vectors", () => {
-    expect(Vector.add([1, 2], [1, 2])).toEqual([2, 4]);
+    let a = Vector.from(1, 2);
+    let b = Vector.from(1, 2);
+    Vector.add(a, b);
+    expect(a).toEqual([2, 4]);
+    expect(b).toEqual([1, 2]);
   });
 
   it("should subtract vectors", () => {
-    expect(Vector.subtract([2, 4], [1, 2])).toEqual([1, 2]);
+    let a = Vector.from(2, 4);
+    let b = Vector.from(1, 2);
+    Vector.subtract(a, b);
+    expect(a).toEqual([1, 2]);
+    expect(b).toEqual([1, 2]);
   });
 
   it("should multiply vectors", () => {
-    expect(Vector.multiply([2, 4], [1, 2])).toEqual([2, 8]);
+    let a = Vector.from(2, 4);
+    let b = Vector.from(1, 2);
+    Vector.multiply(a, b);
+    expect(a).toEqual([2, 8]);
+    expect(b).toEqual([1, 2]);
   });
 
   it("should divide vectors", () => {
-    expect(Vector.divide([6, 8], [2, 4])).toEqual([3, 2]);
+    let a = Vector.from(6, 8);
+    let b = Vector.from(2, 4);
+    Vector.divide(a, b);
+    expect(a).toEqual([3, 2]);
+    expect(b).toEqual([2, 4]);
+  });
+
+  it("should add vectors and return a new vector", () => {
+    expect(Vector.added([1, 2], [1, 2])).toEqual([2, 4]);
+  });
+
+  it("should subtract vectors and return a new vector", () => {
+    expect(Vector.subtracted([2, 4], [1, 2])).toEqual([1, 2]);
+  });
+
+  it("should multiply vectors and return a new vector", () => {
+    expect(Vector.multiplied([2, 4], [1, 2])).toEqual([2, 8]);
+  });
+
+  it("should divide vectors and return a new vector", () => {
+    expect(Vector.divided([6, 8], [2, 4])).toEqual([3, 2]);
   });
 
   it("should normalize a vector", () => {

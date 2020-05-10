@@ -97,9 +97,21 @@ export function dot(v1: Vector, v2: Vector): number {
 }
 
 /**
- * Adds `v1` and `v2` to create a new vector.
+ * Adds `v2` to `v1`.
+ *
+ * Use [[added]] if you want to create a new vector instead.
  */
-export function add(v1: Vector, v2: Vector): Vector {
+export function add(v1: Vector, v2: Vector) {
+  v1[0] += v2[0];
+  v1[1] += v2[1];
+}
+
+/**
+ * Adds `v1` and `v2` to create a new vector.
+ *
+ * Use [[add]] if you want to modify `v1` instead.
+ */
+export function added(v1: Vector, v2: Vector): Vector {
   return [
     v1[0] + v2[0],
     v1[1] + v2[1],
@@ -107,9 +119,21 @@ export function add(v1: Vector, v2: Vector): Vector {
 }
 
 /**
- * Subtracts `v2` from `v1` to create a new vector.
+ * Subtracts `v2` from `v1`.
+ *
+ * Use [[subtracted]] if you want to create a new vector instead.
  */
-export function subtract(v1: Vector, v2: Vector): Vector {
+export function subtract(v1: Vector, v2: Vector): void {
+  v1[0] -= v2[0];
+  v1[1] -= v2[1];
+}
+
+/**
+ * Subtracts `v2` from `v1` to create a new vector.
+ *
+ * Use [[subtract]] if you want to modify `v1` instead.
+ */
+export function subtracted(v1: Vector, v2: Vector): Vector {
   return [
     v1[0] - v2[0],
     v1[1] - v2[1],
@@ -117,9 +141,21 @@ export function subtract(v1: Vector, v2: Vector): Vector {
 }
 
 /**
- * Multiplies `v1` and `v2` to create a new vector.
+ * Multiplies `v1` by `v2`.
+ *
+ * Use [[multiplied]] if you want to create a new vector instead.
  */
-export function multiply(v1: Vector, v2: Vector): Vector {
+export function multiply(v1: Vector, v2: Vector): void {
+  v1[0] *= v2[0];
+  v1[1] *= v2[1];
+}
+
+/**
+ * Multiplies `v1` and `v2` to create a new vector.
+ *
+ * Use [[multiply]] if you want to modify `v1` instead.
+ */
+export function multiplied(v1: Vector, v2: Vector): Vector {
   return [
     v1[0] * v2[0],
     v1[1] * v2[1],
@@ -127,9 +163,21 @@ export function multiply(v1: Vector, v2: Vector): Vector {
 }
 
 /**
- * Divides `v1` by `v2` to create a new vector.
+ * Divides `v1` by `v2`
+ *
+ * Use [[divided]] if you want to create a new vector instead.
  */
-export function divide(v1: Vector, v2: Vector): Vector {
+export function divide(v1: Vector, v2: Vector) {
+  v1[0] /= v2[0];
+  v1[1] /= v2[1];
+}
+
+/**
+ * Divides `v1` by `v2` to create a new vector.
+ *
+ * Use [[divide]] if you want to modify `v1` instead.
+ */
+export function divided(v1: Vector, v2: Vector): Vector {
   return [
     v1[0] / v2[0],
     v1[1] / v2[1],
@@ -140,7 +188,7 @@ export function divide(v1: Vector, v2: Vector): Vector {
  * Normalizes `vector` to have a [[length]] of 1.
  *
  * This function modifies `vector`. Use [[normalized]] if you want to
- * produce a new vector.
+ * create a new vector instead.
  */
 export function normalize(vector: Vector) {
   let len = 1 / Math.hypot(vector[0], vector[1]);
