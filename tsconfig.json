@@ -12,13 +12,8 @@
   ],
   "exclude": [
     "examples",
-  ],
-  "typedocOptions": {
-    "out": "docs",
-    "exclude": [
-      "**/*.test.ts",
-      "examples",
-      "node_modules/**/*"
-    ]
-  }
+    "docs",
+    "assets",
+    "**/*.test.ts"
+  ]
 }

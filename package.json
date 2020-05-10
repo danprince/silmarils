@@ -11,7 +11,7 @@
     "test": "jest",
     "build": "tsc",
     "clean": "git clean -fx",
-    "docs": "typedoc --noEmit && cp assets/favicon.ico docs && cp -r assets docs",
+    "docs": "typedoc --out docs && cp assets/favicon.ico docs && cp -r assets docs",
     "prepublishOnly": "yarn clean && yarn build",
     "postpublish": "yarn clean"
   },
@@ -40,6 +40,11 @@
     "./vector": "./vector.js"
   },
   "jest": {
-    "preset": "ts-jest"
+    "preset": "ts-jest",
+    "globals": {
+      "ts-jest": {
+        "include": ["**/*.test.ts"]
+      }
+    }
   }
 }
