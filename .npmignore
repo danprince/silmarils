@@ -2,3 +2,4 @@ assets
 docs
 examples
 .github
+*.test.*
