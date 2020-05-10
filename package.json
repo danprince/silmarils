@@ -11,7 +11,7 @@
     "test": "jest",
     "build": "tsc",
     "clean": "git clean -fx",
-    "docs": "typedoc --noEmit",
+    "docs": "typedoc --noEmit && cp assets/favicon.ico docs && cp -r assets docs",
     "prepublishOnly": "yarn clean && yarn build",
     "postpublish": "yarn clean"
   },

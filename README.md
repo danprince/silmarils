@@ -1,4 +1,7 @@
-# Silmarils
+<div align="center">
+  <img src="assets/logo.svg" width="64" />
+  <h1 align="center">Silmarils</h1>
+</div>
 
 [![](https://img.shields.io/npm/v/silmarils.svg?style=flat)](https://www.npmjs.com/package/silmarils)
 [![Tests](https://github.com/danprince/silmarils/workflows/Tests/badge.svg)](https://github.com/danprince/silmarils/actions?query=workflow%3ATests)
@@ -8,6 +11,7 @@ This library is a collection of code that I am fed up of rewriting for games and
 It is well typed, data oriented, and designed to be easy to use in modern environments.
 
 * [Documentation](https://silmarils.netlify.app/)
+* [Usage](#usage)
 
 ## Usage
 You can use Silmarils directly in [browsers that support ES modules][caniuse-esm].
