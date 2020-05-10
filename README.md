@@ -1,10 +1,6 @@
-<div align="center">
-  <img src="assets/logo.svg" width="64" />
-  <h1 align="center">Silmarils</h1>
-</div>
-
-[![](https://img.shields.io/npm/v/silmarils.svg?style=flat)](https://www.npmjs.com/package/silmarils)
-[![Tests](https://github.com/danprince/silmarils/workflows/Tests/badge.svg)](https://github.com/danprince/silmarils/actions?query=workflow%3ATests)
+<p align="center"><img src="assets/logo.svg" height="32" alt="Logo" /></p>
+<h1 align="center">Silmarils</h1>
+<p align="center"><a href="https://npmjs.com/package/silmarils"><img src="https://img.shields.io/npm/v/silmarils.svg?label=&color=000"  alt="npm version" /></a></p>
 
 This library is a collection of code that I am fed up of rewriting for games and interactive visualizations.
 
