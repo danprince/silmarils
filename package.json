@@ -22,6 +22,23 @@
     "typedoc": "^0.17.6",
     "typescript": "^3.8.3"
   },
+  "exports": {
+    ".": "./index.js",
+    "./angle": "./angle.js",
+    "./array-2d": "./array-2d.js",
+    "./canvas": "./canvas.js",
+    "./circle": "./circle.js",
+    "./direction": "./direction.js",
+    "./keyboard": "./keyboard.js",
+    "./line": "./line.js",
+    "./mouse": "./mouse.js",
+    "./point": "./point.js",
+    "./prng": "./prng.js",
+    "./rectangle": "./rectangle.js",
+    "./rng": "./rng.js",
+    "./uid": "./uid.js",
+    "./vector": "./vector.js"
+  },
   "jest": {
     "preset": "ts-jest"
   }
