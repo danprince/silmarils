@@ -96,3 +96,19 @@ export function shuffle(array: any[]) {
 export function shuffled<T>(array: T[]): T[] {
   return PRNG.shuffled(gen, array);
 }
+
+/**
+ * Select a value from a list of weighted items. A higher weight means
+ * an item is more likely to be selected.
+ *
+ * ```typescript
+ * let item = RNG.weighted([
+ *   { weight: 1, value: "foo" },
+ *   { weight: 2, value: "bar" },
+ *   { weight: 3, value: "baz" },
+ * ])
+ * ```
+ */
+export function weighted<T>(items: PRNG.WeightedItem<T>[]): T {
+  return PRNG.weighted(gen, items);
+}

@@ -95,4 +95,23 @@ describe("PRNG", () => {
       expect(shuffled).not.toEqual(array);
     }
   });
+
+  it("should pick a weighted item", () => {
+    let rng = PRNG.generator(SEED);
+
+    let items = [
+      { value: 0, weight: 10 },
+      { value: 1, weight: 20 },
+      { value: 2, weight: 30 },
+      { value: 3, weight: 40 },
+      { value: 4, weight: 50 },
+    ];
+
+    let values = items.map(item => item.value);
+
+    for (let i = 0; i < SAMPLES; i++) {
+      let value = PRNG.weighted(rng, items);
+      expect(values).toContain(value);
+    }
+  });
 });
