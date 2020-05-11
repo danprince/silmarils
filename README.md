@@ -14,16 +14,10 @@ You can use Silmarils directly in [browsers that support ES modules][caniuse-esm
 
 ``` javascript
 // importing modules from UNPKG
-import { Point } from "https://unpkg.com/silmarils?module"
+import { Point } from "https://unpkg.com/silmarils"
 
 // importing a single function from UNPKG
-import { distance } from "https://unpkg.com/silmarils/point?module";
-
-// importing modules from Pika CDN
-import { Point } from "https://cdn.pika.dev/silmarils";
-
-// importing a single function from Pika CDN
-import { distance } from "https://cdn.pika.dev/silmarils/rectangle";
+import { distance } from "https://unpkg.com/silmarils";
 ```
 
 Alternatively if you're using a bundler (like Webpack, Rollup or Parcel) then you can install the library from npm and import it instead.
