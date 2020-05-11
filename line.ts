@@ -154,3 +154,45 @@ export function translated(line: Line, vector: Vector): Line {
     y2: line.y2 + vector[1],
   };
 }
+
+/**
+ * Iterates over the points on a rasterised version of `line` using
+ * Bresenham's line drawing algorithm.
+ *
+ * See: https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
+ */
+export function* pixels(line: Line): Generator<Point> {
+  let { x1, y1, x2, y2 } = line;
+  let dx = x2 - x1;
+  let dy = y2 - y1;
+  let sx = Math.sign(dx);
+  let sy = Math.sign(dy);
+  let error = 0;
+
+  dx = Math.abs(dx);
+  dy = Math.abs(dy);
+
+  if (dx > dy) {
+    for (let x = x1, y = y1; sx < 0 ? x >= x2 : x <= x2; x += sx) {
+      yield { x, y };
+
+      error += dy;
+
+      if (error * 2 >= dx) {
+        y += sy;
+        error -= dx;
+      }
+    }
+  } else {
+    for(let x = x1, y = y1; sy < 0 ? y >= y2 : y <= y2; y += sy) {
+      yield { x, y };
+
+      error += dx;
+
+      if (error * 2 >= dy) {
+        x += sx;
+        error -= dy;
+      }
+    }
+  }
+}
