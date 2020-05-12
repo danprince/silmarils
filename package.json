@@ -4,6 +4,7 @@
   "version": "0.1.5",
   "main": "index.js",
   "module": "index.js",
+  "types": "index.d.ts",
   "repository": "git@github.com:danprince/silmarils.git",
   "author": "danprince <northwalesdan@gmail.com>",
   "license": "MIT",
