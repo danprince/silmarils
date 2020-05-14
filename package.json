@@ -11,7 +11,7 @@
   "scripts": {
     "test": "jest",
     "build": "tsc",
-    "clean": "git clean -fx",
+    "clean": "rm -rf *.js *.d.ts",
     "docs": "typedoc --out docs && cp assets/favicon.ico docs && cp -r assets docs",
     "prepublishOnly": "yarn clean && yarn build",
     "postpublish": "yarn clean"
