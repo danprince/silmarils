@@ -38,7 +38,8 @@
     "./rectangle": "./rectangle.js",
     "./rng": "./rng.js",
     "./uid": "./uid.js",
-    "./vector": "./vector.js"
+    "./vector": "./vector.js",
+    "./easing": "./easing.js"
   },
   "jest": {
     "preset": "ts-jest",
