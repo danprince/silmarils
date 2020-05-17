@@ -3,6 +3,14 @@ import * as Point from "./point";
 import * as Vector from "./vector";
 
 describe("Rectangle", () => {
+  it("should recognise rectangles", () => {
+    expect(Rectangle.is({ x: 0, y: 0, width: 10, height: 10 })).toBe(true);
+    expect(Rectangle.is(true)).toBe(false);
+    expect(Rectangle.is(null)).toBe(false);
+    expect(Rectangle.is({ x: 0, y: 0 })).toBe(false);
+    expect(Rectangle.is({ x: true, y: 0, width: 10, height: 10 })).toBe(false);
+  });
+
   it("should create a rectangle", () => {
     let r = Rectangle.from(0, 1, 2, 3);
     expect(r).toEqual({ x: 0, y: 1, width: 2, height: 3 });

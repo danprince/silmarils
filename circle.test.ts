@@ -3,6 +3,14 @@ import * as Point from "./point";
 import * as Vector from "./vector";
 
 describe("Circle", () => {
+  it("should recognise circles", () => {
+    expect(Circle.is({ x: 0, y: 0, radius: 10 })).toBe(true);
+    expect(Circle.is(true)).toBe(false);
+    expect(Circle.is(null)).toBe(false);
+    expect(Circle.is({ x: 0, y: 0 })).toBe(false);
+    expect(Circle.is({ x: true, y: 0, radius: 10 })).toBe(false);
+  });
+
   it("should create a circle", () => {
     expect(Circle.from(0, 1, 2)).toEqual({ x: 0, y: 1, radius: 2 });
   });

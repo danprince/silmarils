@@ -27,6 +27,20 @@ export interface Line {
 }
 
 /**
+ * Determines whether `value` is a [[Line]].
+ */
+export function is(value: any): value is Line {
+  return (
+    value != null &&
+    typeof value === "object" &&
+    typeof value.x1 === "number" &&
+    typeof value.y1 === "number" &&
+    typeof value.x2 === "number" &&
+    typeof value.y2 === "number"
+  );
+}
+
+/**
  * Creates a line from the coordinates of its start and end.
  *
  * @category Constructor

@@ -1,6 +1,22 @@
 import * as Array2D from "./array-2d";
 
 describe("Array2D", () => {
+  it("should guard against bad values", () => {
+    expect(Array2D.is(Array2D.create(2, 2))).toBe(true);
+    expect(Array2D.is(null)).toBe(false);
+    expect(Array2D.is({ width: "a", height: 2, data: [] })).toBe(false);
+    expect(Array2D.is({ width: 2, height: "2", data: [] })).toBe(false);
+    expect(Array2D.is({ width: 2, height: 2, data: false })).toBe(false);
+    expect(Array2D.is({ width: 2, height: 2, data: [] })).toBe(false);
+
+    function isNumber(value: any): value is number {
+      return typeof value === "number";
+    }
+
+    expect(Array2D.is(Array2D.create(3, 3, 0), isNumber)).toBe(true);
+    expect(Array2D.is(Array2D.create(3, 3, "a"), isNumber)).toBe(false);
+  });
+
   it("should create an empty array2d", () => {
     let a = Array2D.create(2, 3);
     expect(a.width).toBe(2);

@@ -2,6 +2,15 @@ import * as Vector from "./vector";
 import * as Point from "./point";
 
 describe("Vector", () => {
+  it("should recognise vectors", () => {
+    expect(Vector.is([1, 2])).toBe(true);
+    expect(Vector.is(null)).toBe(false);
+    expect(Vector.is({ 0: 1, 1: 2 })).toBe(false);
+    expect(Vector.is([1,2,3,4])).toBe(false);
+    expect(Vector.is(["a", 2])).toBe(false);
+    expect(Vector.is([1, "b"])).toBe(false);
+  });
+
   it("should create a vector", () => {
     expect(Vector.from(10, 10))
   });

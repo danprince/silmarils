@@ -6,6 +6,19 @@ import type { Point } from "./point";
 export type Vector = [number, number];
 
 /**
+ * Determines whether `value` is a [[Vector]].
+ */
+export function is(value: any): value is Vector {
+  return (
+    value != null &&
+    Array.isArray(value) &&
+    value.length === 2 &&
+    typeof value[0] === "number" &&
+    typeof value[1] === "number"
+  );
+}
+
+/**
  * Creates a vector from X and Y components.
  *
  * @category Constructors

@@ -15,6 +15,18 @@ export interface Point {
 export const ORIGIN = Object.freeze({ x: 0, y: 0 });
 
 /**
+ * Determines whether `value` is a [[Point]].
+ */
+export function is(value: any): value is Point {
+  return (
+    value != null &&
+    typeof value === "object" &&
+    typeof value.x === "number" &&
+    typeof value.y === "number"
+  );
+}
+
+/**
  * Creates a point from its X and Y coordinates.
  *
  * @category Constructor

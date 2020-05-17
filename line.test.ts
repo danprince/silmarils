@@ -3,6 +3,14 @@ import * as Point from "./point";
 import * as Vector from "./vector";
 
 describe("Line", () => {
+  it("should recognise lines", () => {
+    expect(Line.is({ x1: 0, y1: 0, x2: 1, y2: 1 })).toBe(true);
+    expect(Line.is(true)).toBe(false);
+    expect(Line.is(null)).toBe(false);
+    expect(Line.is({ x1: 0, y1: 0, x2: 1 })).toBe(false);
+    expect(Line.is({ x1: true, y1: 0, x2: 1, y2: 1 })).toBe(false);
+  });
+
   it("should create a line", () => {
     let l = Line.from(0, 1, 2, 3);
     expect(l).toEqual({ x1: 0, y1: 1, x2: 2, y2: 3 });

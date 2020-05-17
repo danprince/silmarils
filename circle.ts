@@ -22,6 +22,19 @@ export interface Circle {
 }
 
 /**
+ * Determines whether `value` is a [[Circle]].
+ */
+export function is(value: any): value is Circle {
+  return (
+    value != null &&
+    typeof value === "object" &&
+    typeof value.x === "number" &&
+    typeof value.y === "number" &&
+    typeof value.radius === "number"
+  );
+}
+
+/**
  * Creates a circle given the x, y coordinates of the center and its radius.
  *
  * @category Constructor

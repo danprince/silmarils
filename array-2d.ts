@@ -22,6 +22,44 @@ export interface Array2D<T> {
 }
 
 /**
+ * Determines whether `value` is an [[Array2D]].
+ *
+ * @param guard An on optional [type guard](https://www.typescriptlang.org/docs/handbook/advanced-types.html#user-defined-type-guards)
+ * that will check the type of the elements of in the array.
+ *
+ * ```ts
+ * // Check that grid is an Array2D<Point.Point>
+ * Array2D.is(grid, Point.is)
+ *
+ * function isNumber(value): value is number {
+ *   return typeof value === "number";
+ * }
+ *
+ * // Check that samples is an Array2D<number>
+ * Array2D.is(samples, isNumber)
+ * ```
+ */
+export function is<T = any>(
+  value: any,
+  guard?: (v: any) => v is T
+): value is Array2D<T> {
+  return (
+    // Check whether it looks like an array2d
+    value != null &&
+    typeof value === "object" &&
+    typeof value.width === "number" &&
+    typeof value.height === "number" &&
+    Array.isArray(value.data) &&
+
+    // Validate that the length matches the width/height
+    value.data.length === (value.width * value.height) &&
+
+    // If a type guard was provided, check the element types
+    (guard ? value.data.every(guard) : true)
+  );
+}
+
+/**
  * Creates an empty [[Array2D]] with fixed dimensions and an optional
  * initial value for each element.
  *

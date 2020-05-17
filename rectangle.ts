@@ -27,6 +27,20 @@ export interface Rectangle {
 }
 
 /**
+ * Determines whether `value` is a [[Rectangle]].
+ */
+export function is(value: any): value is Rectangle {
+  return (
+    value != null &&
+    typeof value === "object" &&
+    typeof value.x === "number" &&
+    typeof value.y === "number" &&
+    typeof value.width === "number" &&
+    typeof value.height === "number"
+  );
+}
+
+/**
  * Creates a rectangle from x and y coordinates and a width and height.
  *
  * @category Constructor

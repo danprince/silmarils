@@ -2,6 +2,14 @@ import * as Point from "./point";
 import * as Vector from "./vector";
 
 describe("Point", () => {
+  it("should recognise points", () => {
+    expect(Point.is({ x: 0, y: 0 })).toBe(true);
+    expect(Point.is(true)).toBe(false);
+    expect(Point.is(null)).toBe(false);
+    expect(Point.is({ x: 0 })).toBe(false);
+    expect(Point.is({ x: true, y: 0 })).toBe(false);
+  });
+
   it("should create a point", () => {
     let p = Point.from(10, 10);
     expect(p).toEqual({ x: 10, y: 10 });
