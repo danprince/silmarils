@@ -12,7 +12,7 @@
     "test": "jest",
     "build": "tsc -p tsconfig.build.json",
     "clean": "rm -rf *.js *.d.ts *.d.ts.map",
-    "docs": "typedoc --out docs && cp assets/favicon.ico docs && cp -r assets docs",
+    "docs": "typedoc --tsconfig tsconfig.build.json --out docs && cp assets/favicon.ico docs && cp -r assets docs",
     "prepublishOnly": "yarn clean && yarn build",
     "postpublish": "yarn clean"
   },
