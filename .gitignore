@@ -2,9 +2,9 @@
 node_modules
 
 # ts generated files
-*.js
-*.d.ts
-*.d.ts.map
+/*.js
+/*.d.ts
+/*.d.ts.map
 
 # generated docs
 docs
