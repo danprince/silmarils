@@ -1,8 +1,7 @@
 /**
  * # Easing Functions
  *
- * <div id="root"></div>
- * <script type="module" src="/assets/easing-previews.js"></script>
+ * See https://easings.net for visual previews of each function.
  *
  * @packageDocumentation
  */
