@@ -15,6 +15,10 @@ import * as Array2D from "./array-2d";
 import * as Direction from "./direction";
 import * as UID from "./uid";
 import * as Canvas from "./canvas";
+import * as Easing from "./easing";
+import * as Timers from "./timers";
+import * as Mouse from "./mouse";
+import * as Keyboard from "./keyboard";
 
 export {
   Point,
@@ -29,7 +33,8 @@ export {
   Direction,
   UID,
   Canvas,
+  Easing,
+  Timers,
+  Mouse,
+  Keyboard,
 };
-
-export * from "./mouse";
-export * from "./keyboard";
