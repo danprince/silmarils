@@ -1,5 +1,10 @@
 export interface Timer {
   /**
+   * Check whether a timer is currently stopped.
+   */
+  stopped: boolean,
+
+  /**
    * Starts the timer. Most timers will be started automatically, but
    * they can be restarted manually using [[start]] after calling [[stop]].
    */
@@ -29,28 +34,8 @@ export function timeout(duration: number, callback: () => any): Timer {
   let last = 0;
   let id = 0;
 
-  function start() {
-    if (id === 0) {
-      id = requestAnimationFrame(loop);
-    }
-  }
-
-  function stop() {
-    if (id) {
-      cancelAnimationFrame(id);
-      id = 0;
-    }
-  }
-
-  function reset() {
-    if (id) {
-      id = 0;
-      last = 0;
-    }
-  }
-
-  function loop(now: number) {
-    id = requestAnimationFrame(loop);
+  function tick(now: number) {
+    id = requestAnimationFrame(tick);
     last = last || now;
     let elapsed = now - last;
 
@@ -60,13 +45,33 @@ export function timeout(duration: number, callback: () => any): Timer {
     }
   }
 
-  start();
+  let timer: Timer = {
+    stopped: true,
 
-  return {
-    start,
-    stop,
-    reset,
+    start() {
+      if (timer.stopped) {
+        id = requestAnimationFrame(tick);
+        timer.stopped = false;
+      }
+    },
+
+    stop() {
+      if (!timer.stopped) {
+        cancelAnimationFrame(id);
+        timer.stopped = true;
+        last = 0;
+      }
+    },
+
+    reset() {
+      id = 0;
+      last = 0;
+    },
   };
+
+  timer.start();
+
+  return timer;
 }
 
 /**
@@ -89,28 +94,8 @@ export function interval(duration: number, callback: (dt: number) => any): Timer
   let last = 0;
   let id = 0;
 
-  function start() {
-    if (id === 0) {
-      id = requestAnimationFrame(loop);
-    }
-  }
-
-  function stop() {
-    if (id) {
-      cancelAnimationFrame(id);
-      id = 0;
-    }
-  }
-
-  function reset() {
-    if (id) {
-      id = 0;
-      last = 0;
-    }
-  }
-
-  function loop(now: number) {
-    id = requestAnimationFrame(loop);
+  function tick(now: number) {
+    id = requestAnimationFrame(tick);
     last = last || now;
     let delta = now - last;
 
@@ -120,13 +105,33 @@ export function interval(duration: number, callback: (dt: number) => any): Timer
     }
   }
 
-  start();
+  let timer: Timer = {
+    stopped: true,
 
-  return {
-    start,
-    stop,
-    reset,
+    start() {
+      if (timer.stopped) {
+        timer.stopped = false;
+        id = requestAnimationFrame(tick);
+      }
+    },
+
+    stop() {
+      if (!timer.stopped) {
+        cancelAnimationFrame(id);
+        timer.stopped = true;
+        last = 0;
+      }
+    },
+
+    reset() {
+      id = 0;
+      last = 0;
+    }
   };
+
+  timer.start();
+
+  return timer;
 }
 
 /**
@@ -137,41 +142,40 @@ export function animation(callback: (dt: number) => any): Timer {
   let last = 0;
   let id = 0;
 
-  function start() {
-    if (id === 0) {
-      id = requestAnimationFrame(loop);
-    }
-  }
-
-  function stop() {
-    if (id) {
-      cancelAnimationFrame(id);
-      id = 0;
-    }
-  }
-
-  function reset() {
-    if (id) {
-      id = 0;
-      last = 0;
-    }
-  }
-
-  function loop(now: number) {
-    id = requestAnimationFrame(loop);
+  function tick(now: number) {
+    id = requestAnimationFrame(tick);
     last = last || now;
     let delta = now - last;
     callback(delta);
     last = now;
   }
 
-  start();
+  let timer: Timer = {
+    stopped: true,
 
-  return {
-    start,
-    stop,
-    reset,
-  };
+    start() {
+      if (timer.stopped) {
+        id = requestAnimationFrame(tick);
+        timer.stopped = false;
+      }
+    },
+
+    stop() {
+      if (!timer.stopped) {
+        cancelAnimationFrame(id);
+        timer.stopped = true;
+      }
+    },
+
+    reset() {
+      id = 0;
+      last = 0;
+    },
+  }
+
+  timer.start();
+
+  return timer;
 }
 
 /**
@@ -192,29 +196,8 @@ export function interpolate(duration: number, callback: (t: number) => any): Tim
   let id = 0;
   let elapsed = 0;
 
-  function start() {
-    if (id === 0) {
-      id = requestAnimationFrame(loop);
-    }
-  }
-
-  function stop() {
-    if (id) {
-      cancelAnimationFrame(id);
-      id = 0;
-      last = 0;
-    }
-  }
-
-  function reset() {
-    if (id) {
-      last = 0;
-      elapsed = 0;
-    }
-  }
-
-  function loop(now: number) {
-    id = requestAnimationFrame(loop);
+  function tick(now: number) {
+    id = requestAnimationFrame(tick);
     last = last || now;
 
     let delta = now - last;
@@ -225,16 +208,36 @@ export function interpolate(duration: number, callback: (t: number) => any): Tim
     callback(t);
 
     if (t === 1) {
-      stop();
-      reset();
+      timer.stop();
+      timer.reset();
     }
   }
 
-  start();
+  let timer: Timer = {
+    stopped: true,
 
-  return {
-    start,
-    stop,
-    reset,
+    start() {
+      if (timer.stopped) {
+        id = requestAnimationFrame(tick);
+        timer.stopped = false;
+      }
+    },
+
+    stop() {
+      if (!timer.stopped) {
+        cancelAnimationFrame(id);
+        timer.stopped = true;
+        last = 0;
+      }
+    },
+
+    reset() {
+      last = 0;
+      elapsed = 0;
+    },
   };
+
+  timer.start();
+
+  return timer;
 }
