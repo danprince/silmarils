@@ -89,4 +89,9 @@ describe("RNG", () => {
       expect(values).toContain(value);
     }
   });
+
+  it("should return probability based chance", () => {
+    expect(RNG.chance(0)).toBe(false);
+    expect(RNG.chance(1)).toBe(true);
+  });
 });

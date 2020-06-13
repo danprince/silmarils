@@ -192,3 +192,14 @@ export function weighted<T>(rng: RNG, items: WeightedItem<T>[]): T {
 
   return element(rng, bag);
 }
+
+/**
+ * Return a boolean based on a probability.
+ *
+ * @param probability A number between 0 and 1 representing the
+ * likelihood that true will be returned. A probability of 0 will
+ * always return false and a probability of 1 will always return true.
+ */
+export function chance(rng: RNG, probability: number) {
+  return next(rng) <= probability;
+}

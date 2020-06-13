@@ -114,4 +114,10 @@ describe("PRNG", () => {
       expect(values).toContain(value);
     }
   });
+
+  it("should return probability based chance", () => {
+    let rng = PRNG.generator(SEED);
+    expect(PRNG.chance(rng, 0)).toBe(false);
+    expect(PRNG.chance(rng, 1)).toBe(true);
+  });
 });
