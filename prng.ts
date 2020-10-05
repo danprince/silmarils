@@ -156,7 +156,7 @@ export function shuffled<T>(rng: RNG, array: T[]): T[] {
   for (let i = 0; i < n - 2; i++) {
     let j = int(shuffler, i, n - 1);
     out[i] = array[j];
-    out[j] = array[j];
+    out[j] = array[i];
   }
 
   return out;

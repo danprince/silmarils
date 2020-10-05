@@ -93,6 +93,10 @@ describe("PRNG", () => {
     for (let i = 0; i < SAMPLES; i++) {
       let shuffled = PRNG.shuffled(rng, array);
       expect(shuffled).not.toEqual(array);
+
+      for (let n of array) {
+        expect(shuffled).toContain(n);
+      }
     }
   });
 
