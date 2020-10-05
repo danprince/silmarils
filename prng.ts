@@ -147,18 +147,8 @@ export function shuffle(rng: RNG, array: any[]): void {
  * in place instead.
  */
 export function shuffled<T>(rng: RNG, array: T[]): T[] {
-  let seed = int(rng);
-  let shuffler = generator(seed);
-
-  let n = array.length;
-  let out: T[] = new Array(n);
-
-  for (let i = 0; i < n - 2; i++) {
-    let j = int(shuffler, i, n - 1);
-    out[i] = array[j];
-    out[j] = array[i];
-  }
-
+  let out = Array.from(array);
+  shuffle(rng, out);
   return out;
 }
 
