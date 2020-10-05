@@ -1,7 +1,7 @@
 {
   "name": "silmarils",
   "description": "Utilities for building 2d games",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "main": "index.js",
   "module": "index.js",
   "types": "index.d.ts",
