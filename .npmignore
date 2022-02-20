@@ -3,3 +3,8 @@ docs
 examples
 .github
 *.test.*
+*.ts
+!*.d.ts
+tsconfig.json
+tsconfig.*.json
+yarn.lock
