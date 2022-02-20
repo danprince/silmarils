@@ -66,6 +66,10 @@ export const SOUTH_EAST = "south-east";
  */
 export const SOUTH_WEST = "south-west";
 
+export const CARDINAL_DIRECTIONS = [NORTH, EAST, SOUTH, WEST] as const;
+export const INTERCARDINAL_DIRECTIONS = [NORTH_EAST, SOUTH_EAST, SOUTH_WEST, NORTH_WEST] as const;
+export const DIRECTIONS = [NORTH, NORTH_EAST, EAST, SOUTH_EAST, SOUTH, SOUTH_WEST, WEST, NORTH_WEST] as const;
+
 /**
  * Calculates the approximate direction from an angle in radians.
  *
