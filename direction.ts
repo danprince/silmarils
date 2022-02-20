@@ -1,23 +1,33 @@
 import type { Vector } from "./vector";
 import * as Angle from "./angle";
 
+export type North = "north";
+export type East = "east";
+export type South = "south";
+export type West = "west";
+
+export type NorthEast = "north-east";
+export type NorthWest = "north-west";
+export type SouthEast = "south-east";
+export type SouthWest = "south-west";
+
 /**
  * The four points on a compass.
  */
 export type CardinalDirection =
-  | typeof NORTH
-  | typeof EAST
-  | typeof SOUTH
-  | typeof WEST
+  | North
+  | East
+  | South
+  | West
 
 /**
  * The directions between the cardinal directions.
  */
 export type IntercardinalDirection =
-  | typeof NORTH_EAST
-  | typeof NORTH_WEST
-  | typeof SOUTH_EAST
-  | typeof SOUTH_WEST
+  | NorthEast
+  | NorthWest
+  | SouthEast
+  | SouthWest
 
 /**
  * A cardinal or intercardinal direction.
@@ -29,42 +39,42 @@ export type Direction =
 /**
  * @category Cardinal
  */
-export const NORTH = "north";
+export const NORTH: North = "north";
 
 /**
  * @category Cardinal
  */
-export const EAST = "east";
+export const EAST: East = "east";
 
 /**
  * @category Cardinal
  */
-export const SOUTH = "south";
+export const SOUTH: South = "south";
 
 /**
  * @category Cardinal
  */
-export const WEST = "west";
+export const WEST: West = "west";
 
 /**
  * @category Intercardinal
  */
-export const NORTH_EAST = "north-east";
+export const NORTH_EAST: NorthEast = "north-east";
 
 /**
  * @category Intercardinal
  */
-export const NORTH_WEST = "north-west";
+export const NORTH_WEST: NorthWest = "north-west";
 
 /**
  * @category Intercardinal
  */
-export const SOUTH_EAST = "south-east";
+export const SOUTH_EAST: SouthEast = "south-east";
 
 /**
  * @category Intercardinal
  */
-export const SOUTH_WEST = "south-west";
+export const SOUTH_WEST: SouthWest = "south-west";
 
 /**
  * Calculates the approximate direction from an angle in radians.
@@ -225,14 +235,14 @@ export function cardinalFromVector(vector: Vector): CardinalDirection {
 export function rotateRight45(direction: Direction): Direction
 export function rotateRight45(direction: CardinalDirection): IntercardinalDirection
 export function rotateRight45(direction: IntercardinalDirection): CardinalDirection
-export function rotateRight45(direction: typeof NORTH): typeof NORTH_EAST;
-export function rotateRight45(direction: typeof NORTH_EAST): typeof EAST;
-export function rotateRight45(direction: typeof EAST): typeof SOUTH_EAST;
-export function rotateRight45(direction: typeof SOUTH_EAST): typeof SOUTH;
-export function rotateRight45(direction: typeof SOUTH): typeof SOUTH_WEST;
-export function rotateRight45(direction: typeof SOUTH_WEST): typeof WEST;
-export function rotateRight45(direction: typeof WEST): typeof NORTH_WEST;
-export function rotateRight45(direction: typeof NORTH_WEST): typeof NORTH;
+export function rotateRight45(direction: North): NorthEast;
+export function rotateRight45(direction: NorthEast): East;
+export function rotateRight45(direction: East): SouthEast;
+export function rotateRight45(direction: SouthEast): South;
+export function rotateRight45(direction: South): SouthWest;
+export function rotateRight45(direction: SouthWest): West;
+export function rotateRight45(direction: West): NorthWest;
+export function rotateRight45(direction: NorthWest): North;
 export function rotateRight45(direction: Direction): Direction {
   switch (direction) {
     case NORTH: return NORTH_EAST;
@@ -254,13 +264,13 @@ export function rotateRight45(direction: Direction): Direction {
 export function rotateLeft45(direction: Direction): Direction
 export function rotateLeft45(direction: CardinalDirection): IntercardinalDirection
 export function rotateLeft45(direction: IntercardinalDirection): CardinalDirection
-export function rotateLeft45(direction: typeof NORTH): typeof NORTH_WEST
-export function rotateLeft45(direction: typeof NORTH_WEST): typeof WEST
-export function rotateLeft45(direction: typeof WEST): typeof SOUTH_WEST
-export function rotateLeft45(direction: typeof SOUTH_WEST): typeof SOUTH
-export function rotateLeft45(direction: typeof SOUTH): typeof SOUTH_EAST
-export function rotateLeft45(direction: typeof SOUTH_EAST): typeof EAST
-export function rotateLeft45(direction: typeof EAST): typeof NORTH_EAST
+export function rotateLeft45(direction: North): NorthWest
+export function rotateLeft45(direction: NorthWest): West
+export function rotateLeft45(direction: West): SouthWest
+export function rotateLeft45(direction: SouthWest): South
+export function rotateLeft45(direction: South): SouthEast
+export function rotateLeft45(direction: SouthEast): East
+export function rotateLeft45(direction: East): NorthEast
 export function rotateLeft45(direction: Direction): Direction {
   switch (direction) {
     case NORTH: return NORTH_WEST;
@@ -282,14 +292,14 @@ export function rotateLeft45(direction: Direction): Direction {
 export function rotateRight90(direction: Direction): Direction
 export function rotateRight90(direction: CardinalDirection): CardinalDirection
 export function rotateRight90(direction: IntercardinalDirection): IntercardinalDirection
-export function rotateRight90(direction: typeof NORTH): typeof EAST
-export function rotateRight90(direction: typeof EAST): typeof SOUTH
-export function rotateRight90(direction: typeof SOUTH): typeof WEST
-export function rotateRight90(direction: typeof WEST): typeof NORTH
-export function rotateRight90(direction: typeof NORTH_EAST): typeof SOUTH_EAST
-export function rotateRight90(direction: typeof SOUTH_EAST): typeof SOUTH_WEST
-export function rotateRight90(direction: typeof SOUTH_WEST): typeof NORTH_WEST
-export function rotateRight90(direction: typeof NORTH_WEST): typeof NORTH_EAST
+export function rotateRight90(direction: North): East
+export function rotateRight90(direction: East): South
+export function rotateRight90(direction: South): West
+export function rotateRight90(direction: West): North
+export function rotateRight90(direction: NorthEast): SouthEast
+export function rotateRight90(direction: SouthEast): SouthWest
+export function rotateRight90(direction: SouthWest): NorthWest
+export function rotateRight90(direction: NorthWest): NorthEast
 export function rotateRight90(direction: Direction): Direction {
   switch (direction) {
     case NORTH: return EAST;
@@ -311,14 +321,14 @@ export function rotateRight90(direction: Direction): Direction {
 export function rotateLeft90(direction: Direction): Direction
 export function rotateLeft90(direction: CardinalDirection): CardinalDirection
 export function rotateLeft90(direction: IntercardinalDirection): IntercardinalDirection
-export function rotateLeft90(direction: typeof NORTH): typeof WEST
-export function rotateLeft90(direction: typeof WEST): typeof SOUTH
-export function rotateLeft90(direction: typeof SOUTH): typeof EAST
-export function rotateLeft90(direction: typeof EAST): typeof NORTH
-export function rotateLeft90(direction: typeof NORTH_EAST): typeof NORTH_WEST
-export function rotateLeft90(direction: typeof NORTH_WEST): typeof SOUTH_WEST
-export function rotateLeft90(direction: typeof SOUTH_WEST): typeof SOUTH_EAST
-export function rotateLeft90(direction: typeof SOUTH_EAST): typeof NORTH_EAST
+export function rotateLeft90(direction: North): West
+export function rotateLeft90(direction: West): South
+export function rotateLeft90(direction: South): East
+export function rotateLeft90(direction: East): North
+export function rotateLeft90(direction: NorthEast): NorthWest
+export function rotateLeft90(direction: NorthWest): SouthWest
+export function rotateLeft90(direction: SouthWest): SouthEast
+export function rotateLeft90(direction: SouthEast): NorthEast
 export function rotateLeft90(direction: Direction): Direction {
   switch (direction) {
     case NORTH: return WEST;
@@ -340,14 +350,14 @@ export function rotateLeft90(direction: Direction): Direction {
 export function rotate180(direction: Direction): Direction
 export function rotate180(direction: CardinalDirection): CardinalDirection
 export function rotate180(direction: IntercardinalDirection): IntercardinalDirection
-export function rotate180(direction: typeof NORTH): typeof SOUTH
-export function rotate180(direction: typeof SOUTH): typeof NORTH
-export function rotate180(direction: typeof EAST): typeof WEST
-export function rotate180(direction: typeof WEST): typeof EAST
-export function rotate180(direction: typeof NORTH_EAST): typeof SOUTH_WEST
-export function rotate180(direction: typeof NORTH_WEST): typeof SOUTH_EAST
-export function rotate180(direction: typeof SOUTH_EAST): typeof NORTH_WEST
-export function rotate180(direction: typeof SOUTH_WEST): typeof NORTH_EAST
+export function rotate180(direction: North): South
+export function rotate180(direction: South): North
+export function rotate180(direction: East): West
+export function rotate180(direction: West): East
+export function rotate180(direction: NorthEast): SouthWest
+export function rotate180(direction: NorthWest): SouthEast
+export function rotate180(direction: SouthEast): NorthWest
+export function rotate180(direction: SouthWest): NorthEast
 export function rotate180(direction: Direction): Direction {
   switch (direction) {
     case NORTH: return SOUTH;
