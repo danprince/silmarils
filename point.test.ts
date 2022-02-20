@@ -122,4 +122,30 @@ describe("Point", () => {
     expect(p2).not.toBe(p1);
     expect(p2).toEqual({ x: 1, y: 1 });
   });
+
+  it("should return the moore neighbours", () => {
+    let p = Point.from(5, 10);
+    let ns = Point.mooreNeighbours(p);
+    expect(ns).toEqual([
+      Point.from(4, 9),
+      Point.from(5, 9),
+      Point.from(6, 9),
+      Point.from(4, 10),
+      Point.from(6, 10),
+      Point.from(4, 11),
+      Point.from(5, 11),
+      Point.from(6, 11),
+    ]);
+  });
+
+  it("should return the von neumann neighbours", () => {
+    let p = Point.from(5, 10);
+    let ns = Point.vonNeumannNeighbours(p);
+    expect(ns).toEqual([
+      Point.from(5, 9),
+      Point.from(4, 10),
+      Point.from(6, 10),
+      Point.from(5, 11),
+    ]);
+  });
 });

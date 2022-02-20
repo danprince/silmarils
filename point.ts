@@ -168,3 +168,39 @@ export function ceil(point: Point) {
   point.x = Math.ceil(point.x);
   point.y = Math.ceil(point.y);
 }
+
+/**
+ * Returns the adjacent 8-points from the Moore neighbourhood.
+ * Assumes the point a rounded grid coordinate.
+ *
+ * @see https://en.wikipedia.org/wiki/Moore_neighborhood
+ */
+export function mooreNeighbours(point: Point): Point[] {
+  let { x, y } = point;
+  return [
+    { x: x - 1, y: y - 1 },
+    { x: x - 0, y: y - 1 },
+    { x: x + 1, y: y - 1 },
+    { x: x - 1, y: y - 0 },
+    { x: x + 1, y: y - 0 },
+    { x: x - 1, y: y + 1 },
+    { x: x - 0, y: y + 1 },
+    { x: x + 1, y: y + 1 },
+  ];
+}
+
+/**
+ * Returns the adjacent 4-points from the Von Neumann neighbourhood.
+ * Assumes the point a rounded grid coordinate.
+ *
+ * @see https://en.wikipedia.org/wiki/Von_Neumann_neighborhood
+ */
+export function vonNeumannNeighbours(point: Point): Point[] {
+  let { x, y } = point;
+  return [
+    { x: x - 0, y: y - 1 },
+    { x: x - 1, y: y - 0 },
+    { x: x + 1, y: y - 0 },
+    { x: x - 0, y: y + 1 },
+  ];
+}
