@@ -124,3 +124,47 @@ export function interpolate(p1: Point, p2: Point, value: number) {
     y: p1.y + dy * value,
   };
 }
+
+/**
+ * Rounds the coordinates in `point` down.
+ *
+ * This creates a new point. Use [[floor]] if you want to modify `point` instead.
+ */ 
+export function floored(point: Point) {
+  return {
+    x: Math.floor(point.x),
+    y: Math.floor(point.y),
+  };
+}
+
+/**
+ * Rounds the coordinates in `point` down.
+ *
+ * This modifies `point`. Use [[floored]] to create a new point.
+ */
+export function floor(point: Point) {
+  point.x = Math.floor(point.x);
+  point.y = Math.floor(point.y);
+}
+
+/**
+ * Rounds the coordinates in `point` up.
+ *
+ * This creates a new point. Use [[ceil]] if you want to modify `point` instead.
+ */ 
+export function ceiled(point: Point) {
+  return {
+    x: Math.ceil(point.x),
+    y: Math.ceil(point.y),
+  };
+}
+
+/**
+ * Rounds the coordinates in `point` up.
+ *
+ * This modifies `point`. Use [[ceiled]] to create a new point.
+ */
+export function ceil(point: Point) {
+  point.x = Math.ceil(point.x);
+  point.y = Math.ceil(point.y);
+}
