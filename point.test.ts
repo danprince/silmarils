@@ -96,4 +96,30 @@ describe("Point", () => {
     let p3 = Point.interpolate(p1, p2, 0.5);
     expect(p3).toEqual({ x: 5, y: 5 });
   });
+
+  it("should floor a point", () => {
+    let p1 = Point.from(0.2, 0.9);
+    Point.floor(p1);
+    expect(p1).toEqual({ x: 0, y: 0 });
+  });
+
+  it("should create a floored point from a point", () => {
+    let p1 = Point.from(0.2, 0.9);
+    let p2 = Point.floored(p1);
+    expect(p2).not.toBe(p1);
+    expect(p2).toEqual({ x: 0, y: 0 });
+  });
+
+  it("should ceil a point", () => {
+    let p1 = Point.from(0.2, 0.9);
+    Point.ceil(p1);
+    expect(p1).toEqual({ x: 1, y: 1 });
+  });
+
+  it("should create a floored point from a point", () => {
+    let p1 = Point.from(0.2, 0.9);
+    let p2 = Point.ceiled(p1);
+    expect(p2).not.toBe(p1);
+    expect(p2).toEqual({ x: 1, y: 1 });
+  });
 });
