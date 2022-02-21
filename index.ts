@@ -19,6 +19,7 @@ import * as Easing from "./easing";
 import * as Timers from "./timers";
 import * as Mouse from "./mouse";
 import * as Keyboard from "./keyboard";
+import * as Raster from "./raster";
 
 export {
   Point,
@@ -37,4 +38,5 @@ export {
   Timers,
   Mouse,
   Keyboard,
+  Raster,
 };
