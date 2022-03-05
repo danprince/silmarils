@@ -6,6 +6,7 @@ import { Point } from "./point";
 
 describe("Raster", () => {
   test.each([
+    [0, 0, 0, 0, ``],
     [0, 0, 4, 0, `
     #####
     `],

@@ -18,6 +18,8 @@ export function strokeLine(line: Line): Point[] {
   let sy = Math.sign(dy);
   let error = 0;
 
+  if (sx === 0 && sy === 0) return [];
+
   dx = Math.abs(dx);
   dy = Math.abs(dy);
 
