@@ -76,9 +76,9 @@ export const SOUTH_EAST: SouthEast = "south-east";
  */
 export const SOUTH_WEST: SouthWest = "south-west";
 
-export const CARDINAL_DIRECTIONS = [NORTH, EAST, SOUTH, WEST] as const;
-export const INTERCARDINAL_DIRECTIONS = [NORTH_EAST, SOUTH_EAST, SOUTH_WEST, NORTH_WEST] as const;
-export const DIRECTIONS = [NORTH, NORTH_EAST, EAST, SOUTH_EAST, SOUTH, SOUTH_WEST, WEST, NORTH_WEST] as const;
+export const CARDINAL_DIRECTIONS: CardinalDirection[] = [NORTH, EAST, SOUTH, WEST];
+export const INTERCARDINAL_DIRECTIONS: IntercardinalDirection[] = [NORTH_EAST, SOUTH_EAST, SOUTH_WEST, NORTH_WEST];
+export const DIRECTIONS: Direction[] = [NORTH, NORTH_EAST, EAST, SOUTH_EAST, SOUTH, SOUTH_WEST, WEST, NORTH_WEST];
 
 /**
  * Calculates the approximate direction from an angle in radians.
@@ -236,9 +236,6 @@ export function cardinalFromVector(vector: Vector): CardinalDirection {
  *
  * @category Rotation
  */
-export function rotateRight45(direction: Direction): Direction
-export function rotateRight45(direction: CardinalDirection): IntercardinalDirection
-export function rotateRight45(direction: IntercardinalDirection): CardinalDirection
 export function rotateRight45(direction: North): NorthEast;
 export function rotateRight45(direction: NorthEast): East;
 export function rotateRight45(direction: East): SouthEast;
@@ -247,6 +244,9 @@ export function rotateRight45(direction: South): SouthWest;
 export function rotateRight45(direction: SouthWest): West;
 export function rotateRight45(direction: West): NorthWest;
 export function rotateRight45(direction: NorthWest): North;
+export function rotateRight45(direction: CardinalDirection): IntercardinalDirection
+export function rotateRight45(direction: IntercardinalDirection): CardinalDirection
+export function rotateRight45(direction: Direction): Direction
 export function rotateRight45(direction: Direction): Direction {
   switch (direction) {
     case NORTH: return NORTH_EAST;
@@ -265,9 +265,6 @@ export function rotateRight45(direction: Direction): Direction {
  *
  * @category Rotation
  */
-export function rotateLeft45(direction: Direction): Direction
-export function rotateLeft45(direction: CardinalDirection): IntercardinalDirection
-export function rotateLeft45(direction: IntercardinalDirection): CardinalDirection
 export function rotateLeft45(direction: North): NorthWest
 export function rotateLeft45(direction: NorthWest): West
 export function rotateLeft45(direction: West): SouthWest
@@ -275,6 +272,9 @@ export function rotateLeft45(direction: SouthWest): South
 export function rotateLeft45(direction: South): SouthEast
 export function rotateLeft45(direction: SouthEast): East
 export function rotateLeft45(direction: East): NorthEast
+export function rotateLeft45(direction: CardinalDirection): IntercardinalDirection
+export function rotateLeft45(direction: IntercardinalDirection): CardinalDirection
+export function rotateLeft45(direction: Direction): Direction
 export function rotateLeft45(direction: Direction): Direction {
   switch (direction) {
     case NORTH: return NORTH_WEST;
@@ -293,9 +293,6 @@ export function rotateLeft45(direction: Direction): Direction {
  *
  * @category Rotation
  */
-export function rotateRight90(direction: Direction): Direction
-export function rotateRight90(direction: CardinalDirection): CardinalDirection
-export function rotateRight90(direction: IntercardinalDirection): IntercardinalDirection
 export function rotateRight90(direction: North): East
 export function rotateRight90(direction: East): South
 export function rotateRight90(direction: South): West
@@ -304,6 +301,9 @@ export function rotateRight90(direction: NorthEast): SouthEast
 export function rotateRight90(direction: SouthEast): SouthWest
 export function rotateRight90(direction: SouthWest): NorthWest
 export function rotateRight90(direction: NorthWest): NorthEast
+export function rotateRight90(direction: CardinalDirection): CardinalDirection
+export function rotateRight90(direction: IntercardinalDirection): IntercardinalDirection
+export function rotateRight90(direction: Direction): Direction
 export function rotateRight90(direction: Direction): Direction {
   switch (direction) {
     case NORTH: return EAST;
@@ -322,9 +322,6 @@ export function rotateRight90(direction: Direction): Direction {
  *
  * @category Rotation
  */
-export function rotateLeft90(direction: Direction): Direction
-export function rotateLeft90(direction: CardinalDirection): CardinalDirection
-export function rotateLeft90(direction: IntercardinalDirection): IntercardinalDirection
 export function rotateLeft90(direction: North): West
 export function rotateLeft90(direction: West): South
 export function rotateLeft90(direction: South): East
@@ -333,6 +330,9 @@ export function rotateLeft90(direction: NorthEast): NorthWest
 export function rotateLeft90(direction: NorthWest): SouthWest
 export function rotateLeft90(direction: SouthWest): SouthEast
 export function rotateLeft90(direction: SouthEast): NorthEast
+export function rotateLeft90(direction: CardinalDirection): CardinalDirection
+export function rotateLeft90(direction: IntercardinalDirection): IntercardinalDirection
+export function rotateLeft90(direction: Direction): Direction
 export function rotateLeft90(direction: Direction): Direction {
   switch (direction) {
     case NORTH: return WEST;
@@ -351,9 +351,6 @@ export function rotateLeft90(direction: Direction): Direction {
  *
  * @category Rotation
  */
-export function rotate180(direction: Direction): Direction
-export function rotate180(direction: CardinalDirection): CardinalDirection
-export function rotate180(direction: IntercardinalDirection): IntercardinalDirection
 export function rotate180(direction: North): South
 export function rotate180(direction: South): North
 export function rotate180(direction: East): West
@@ -362,6 +359,9 @@ export function rotate180(direction: NorthEast): SouthWest
 export function rotate180(direction: NorthWest): SouthEast
 export function rotate180(direction: SouthEast): NorthWest
 export function rotate180(direction: SouthWest): NorthEast
+export function rotate180(direction: CardinalDirection): CardinalDirection
+export function rotate180(direction: IntercardinalDirection): IntercardinalDirection
+export function rotate180(direction: Direction): Direction
 export function rotate180(direction: Direction): Direction {
   switch (direction) {
     case NORTH: return SOUTH;
