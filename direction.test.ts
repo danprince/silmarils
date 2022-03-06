@@ -82,14 +82,31 @@ describe("Direction", () => {
     }
   );
 
-  test.each([
+  test.each<[Vector.Vector, Direction.Direction]>([
+    [[1, 0], Direction.EAST],
+    [[0, 1], Direction.SOUTH],
+    [[-1, 0], Direction.WEST],
     [[0, -1], Direction.NORTH],
-    [[0, -10], Direction.NORTH],
-    [[-3, -10], Direction.NORTH],
-  ] as [Vector.Vector, Direction.Direction][])(
+  ])(
     "should create a cardinal direction from a vector %p -> %p",
     (vector, direction) => {
       expect(Direction.cardinalFromVector(vector)).toEqual(direction);
+    }
+  );
+
+  test.each<[Vector.Vector, Direction.Direction]>([
+    [[0, -1], Direction.NORTH],
+    [[1, -1], Direction.NORTH_EAST],
+    [[1, 0], Direction.EAST],
+    [[1, 1], Direction.SOUTH_EAST],
+    [[0, 1], Direction.SOUTH],
+    [[-1, 1], Direction.SOUTH_WEST],
+    [[-1, 0], Direction.WEST],
+    [[-1, -1], Direction.NORTH_WEST],
+  ])(
+    "should create a direction from a vector %p -> %p",
+    (vector, direction) => {
+      expect(Direction.fromVector(vector)).toEqual(direction);
     }
   );
 });

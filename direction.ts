@@ -190,19 +190,18 @@ export function toVector(direction: Direction): Vector {
  * @category Vector
  */
 export function fromVector(vector: Vector): Direction {
-  let angle = Math.atan2(vector[0], vector[1]);
+  let angle = Math.atan2(vector[0], vector[1]) + Math.PI;
   let normalized = angle / (2 * Math.PI);
-  let index = Math.round(normalized * 8);
+  let index = Math.floor(normalized * 7);
 
   switch (index) {
-    case 0: return NORTH;
-    case 1: return NORTH_EAST;
-    case 2: return EAST;
-    case 3: return SOUTH_EAST;
-    case 4: return SOUTH;
-    case 5: return SOUTH_WEST;
-    case 6: return WEST;
-    case 7: return NORTH_WEST;
+    case 0: return NORTH_WEST;
+    case 1: return WEST;
+    case 2: return SOUTH_WEST;
+    case 3: return SOUTH;
+    case 4: return SOUTH_EAST;
+    case 5: return EAST;
+    case 6: return NORTH_EAST;
     default: return NORTH;
   }
 }
