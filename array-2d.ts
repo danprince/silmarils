@@ -540,7 +540,7 @@ export function rotateLeft90<T>(array2D: Array2D<T>): Array2D<T> {
 
   for (let y = 0; y < height; y++) {
     for (let x = 0; x < width; x++) {
-      let _x = width - 1 - x;;
+      let _x = width - 1 - x;
       out.data[y + _x * height] = data[x + y * width];
     }
   }
