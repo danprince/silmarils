@@ -236,4 +236,108 @@ describe("Array2D", () => {
       3 + 1 + 1,
     ]);
   });
+
+  describe("toArray2D", () => {
+    test.each([
+      [
+        "1x1",
+        Array2D.create(1, 1, 0),
+        [[0]],
+      ],
+      [
+        "2x1",
+        Array2D.create(2, 1, 0),
+        [[0, 0]],
+      ],
+      [
+        "2x2",
+        Array2D.create(2, 2, 0),
+        [[0, 0],
+         [0, 0]],
+      ],
+      [
+        "3x3",
+        Array2D.create(3, 3, 0),
+        [[0, 0, 0],
+         [0, 0, 0],
+         [0, 0, 0]],
+      ],
+    ])("%s", (_, input, expected) => {
+      let actual = Array2D.to2DArray(input);
+      expect(actual).toEqual(expected);
+    });
+  });
+
+  describe("fromString", () => {
+    test.each([
+      [
+        "1x1",
+        `#`,
+        Array2D.create(1, 1, "#"),
+      ],
+      [
+        "2x1",
+        `##`,
+        Array2D.create(2, 1, "#"),
+      ],
+      [
+        "2x2",
+        `##
+         ##`,
+        Array2D.create(2, 2, "#"),
+      ],
+      [
+        "3x3",
+        `###
+         ###
+         ###`,
+        Array2D.create(3, 3, "#"),
+      ],
+    ])("%s", (_, input, expected) => {
+      let actual = Array2D.fromString(input);
+      expect(actual).toEqual(expected);
+    });
+  });
+
+  describe("toString", () => {
+    test.each([
+      [
+        "1x1",
+        Array2D.create(1, 1, "#"),
+        `#`,
+      ],
+      [
+        "2x1",
+        Array2D.create(2, 1, "#"),
+        `##`,
+      ],
+      [
+        "2x2",
+        Array2D.create(2, 2, "#"),
+        `##
+         ##`,
+      ],
+      [
+        "3x3",
+        Array2D.create(3, 3, "#"),
+        `###
+         ###
+         ###`,
+      ],
+    ])("%s", (_, input, expected) => {
+      let actual = Array2D.toString(input);
+      expected = expected.replace(/ +/g, "");
+      expect(actual).toEqual(expected);
+    });
+
+    test("custom separator", () => {
+      let array = Array2D.create(3, 3, "#");
+      let actual = Array2D.toString(array, ",");
+      expect(actual).toEqual(`
+        #,#,#,
+        #,#,#,
+        #,#,#,
+      `.trim().replace(/ +/g, ""));
+    });
+  });
 });

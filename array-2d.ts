@@ -471,3 +471,38 @@ export function map<T, U>(
     data,
   };
 }
+
+export function fromString(str: string): Array2D<any> {
+  let lines = str.trim().split("\n");
+  let height = lines.length;
+  let width = lines[0].trim().length;
+  let out = create<string>(width, height);
+
+  for (let y = 0; y < height; y++) {
+    let line = lines[y].trim();
+    for (let x = 0; x < width; x++) {
+      let ch = line[x];
+      set(out, x, y, ch);
+    }
+  }
+
+  return out;
+}
+
+export function toString(array2D: Array2D<any>, separator = ""): string {
+  let out = "";
+
+  for (let y = 0; y < array2D.height; y++) {
+    for (let x = 0; x < array2D.width; x++) {
+      let v = get(array2D, x, y);
+      out += v;
+      out += separator;
+    }
+
+    if (y < array2D.height - 1) {
+      out += "\n";
+    }
+  }
+
+  return out;
+}
