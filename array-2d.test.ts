@@ -340,4 +340,123 @@ describe("Array2D", () => {
       `.trim().replace(/ +/g, ""));
     });
   });
+
+  describe("transpose", () => {
+    test.each([
+      [
+        "1x1",
+        `A`,
+        `A`
+      ],
+      [
+        "2x2",
+        `AB
+         CD`,
+        `AC
+         BD`,
+      ],
+      [
+        "3x1",
+        `ABC`,
+        `A
+         B
+         C`
+      ],
+      [
+        "3x3",
+        `ABC
+         DEF
+         GHI`,
+        `ADG
+         BEH
+         CFI`,
+      ],
+    ])("%s", (_, input, expected) => {
+      let array = Array2D.fromString(input);
+      let transposed = Array2D.transpose(array);
+      let actual = Array2D.toString(transposed);
+      expected = expected.replace(/ +/g, "");
+      expect(actual).toEqual(expected);
+    });
+  });
+
+  describe("rotateRight90", () => {
+    test.each([
+      [
+        "1x1",
+        `A`,
+        `A`
+      ],
+      [
+        "2x2",
+        `AB
+         CD`,
+        `CA
+         DB`,
+      ],
+      [
+        "3x2",
+        `ABC
+         DEF`,
+        `DA
+         EB
+         FC`
+      ],
+      [
+        "3x3",
+        `ABC
+         DEF
+         GHI`,
+        `GDA
+         HEB
+         IFC`,
+      ],
+    ])("%s", (_, input, expected) => {
+      let array = Array2D.fromString(input);
+      let transposed = Array2D.rotateRight90(array);
+      let actual = Array2D.toString(transposed);
+      expected = expected.replace(/ +/g, "");
+      expect(actual).toEqual(expected);
+    });
+  });
+
+  describe("rotateLeft90", () => {
+    test.each([
+      [
+        "1x1",
+        `A`,
+        `A`
+      ],
+      [
+        "2x2",
+        `AB
+         CD`,
+        `BD
+         AC`,
+      ],
+      [
+        "3x2",
+        `ABC
+         DEF`,
+        `CF
+         BE
+         AD`
+      ],
+      [
+        "3x3",
+        `ABC
+         DEF
+         GHI`,
+        `CFI
+         BEH
+         ADG`,
+      ],
+    ])("%s", (_, input, expected) => {
+      let array = Array2D.fromString(input);
+      let transposed = Array2D.rotateLeft90(array);
+      let actual = Array2D.toString(transposed);
+      expected = expected.replace(/ +/g, "");
+      expect(actual).toEqual(expected);
+    });
+  });
 });

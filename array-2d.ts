@@ -506,3 +506,44 @@ export function toString(array2D: Array2D<any>, separator = ""): string {
 
   return out;
 }
+
+export function transpose<T>(array2D: Array2D<T>): Array2D<T> {
+  let { data, width, height } = array2D;
+  let out = create<T>(height, width);
+
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      out.data[y + x * height] = data[x + y * width];
+    }
+  }
+
+  return out;
+}
+
+export function rotateRight90<T>(array2D: Array2D<T>): Array2D<T> {
+  let { data, width, height } = array2D;
+  let out = create<T>(height, width);
+
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      let _y = height - 1 - y;
+      out.data[_y + x * height] = data[x + y * width];
+    }
+  }
+
+  return out;
+}
+
+export function rotateLeft90<T>(array2D: Array2D<T>): Array2D<T> {
+  let { data, width, height } = array2D;
+  let out = create<T>(height, width);
+
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      let _x = width - 1 - x;;
+      out.data[y + _x * height] = data[x + y * width];
+    }
+  }
+
+  return out;
+}
