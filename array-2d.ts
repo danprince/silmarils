@@ -547,3 +547,12 @@ export function rotateLeft90<T>(array2D: Array2D<T>): Array2D<T> {
 
   return out;
 }
+
+export function inBounds(array2D: Array2D<any>, x: number, y: number): boolean {
+  return (
+    x >= 0 &&
+    y >= 0 &&
+    x < array2D.width &&
+    y < array2D.height
+  );
+}

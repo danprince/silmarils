@@ -459,4 +459,36 @@ describe("Array2D", () => {
       expect(actual).toEqual(expected);
     });
   });
+
+  describe("inBounds", () => {
+    test("negative x", () => {
+      let arr = Array2D.create(3, 3);
+      expect(Array2D.inBounds(arr, -1, 2)).toBe(false);
+    });
+
+    test("negative y", () => {
+      let arr = Array2D.create(3, 3);
+      expect(Array2D.inBounds(arr, 1, -2)).toBe(false);
+    });
+
+    test("origin is in bounds", () => {
+      let arr = Array2D.create(3, 3);
+      expect(Array2D.inBounds(arr, 0, 0)).toBe(true);
+    });
+
+    test("extent is in bounds", () => {
+      let arr = Array2D.create(3, 3);
+      expect(Array2D.inBounds(arr, 2, 2)).toBe(true);
+    });
+
+    test("overflow x", () => {
+      let arr = Array2D.create(3, 3);
+      expect(Array2D.inBounds(arr, 4, 2)).toBe(false);
+    });
+
+    test("overflow y", () => {
+      let arr = Array2D.create(3, 3);
+      expect(Array2D.inBounds(arr, 2, 8)).toBe(false);
+    });
+  });
 });
