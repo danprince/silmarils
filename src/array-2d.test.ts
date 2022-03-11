@@ -491,4 +491,41 @@ describe("Array2D", () => {
       expect(Array2D.inBounds(arr, 2, 8)).toBe(false);
     });
   });
+
+  test("generate", () => {
+    expect(
+      Array2D.toString(
+        Array2D.generate(3, 3, ({ x, y }) => `${x}:${y}`),
+        ","
+      )
+    ).toBe(`
+      0:0,1:0,2:0,
+      0:1,1:1,2:1,
+      0:2,1:2,2:2,
+    `.trim().replace(/ +/g, ""));
+  });
+
+  test("points", () => {
+    expect(
+      Array2D.points(Array2D.create(3, 3))
+    ).toEqual([
+      { x: 0, y: 0 },
+      { x: 1, y: 0 },
+      { x: 2, y: 0 },
+      { x: 0, y: 1 },
+      { x: 1, y: 1 },
+      { x: 2, y: 1 },
+      { x: 0, y: 2 },
+      { x: 1, y: 2 },
+      { x: 2, y: 2 },
+    ]);
+  });
+
+  test("iter", () => {
+    expect(
+      Array.from(Array2D.iter(Array2D.create(3, 3)))
+    ).toEqual(
+      Array2D.points(Array2D.create(3, 3))
+    );
+  });
 });

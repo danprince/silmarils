@@ -1,3 +1,5 @@
+import type { Point } from "./point";
+
 /**
  * The interface for 2D arrays.
  *
@@ -88,6 +90,47 @@ export function create<T>(
     width: width,
     height: height,
     data: new Array(width * height).fill(initial),
+  };
+}
+
+/**
+ * Creates an empty [[Array2D]] with fixed dimensions and an optional
+ * initial value for each element.
+ *
+ * ```typescript
+ * // create an array with width = 3 and height = 6
+ * Array2D.create(3, 6)
+ *
+ * // create an array with width = 2, height = 2, filled with "a"
+ * Array2D.create(2, 2, "a")
+ * ```
+ *
+ * @category Constructor
+ * @template T The type of the elements in the array
+ * @return The new array
+ */
+export function generate<T>(
+  width: number,
+  height: number,
+  generator: (point: Point) => T
+): Array2D<T> {
+  if (width < 0 || height < 0) {
+    throw new Error("Array2D dimensions must not be negative!");
+  }
+
+  let data = new Array<T>(width * height);
+
+  for (let x = 0; x < width; x++) {
+    for (let y = 0; y < height; y++) {
+      let i = x + y * width;
+      data[i] = generator({ x, y });
+    }
+  }
+
+  return {
+    width: width,
+    height: height,
+    data,
   };
 }
 
@@ -555,4 +598,24 @@ export function inBounds(array2D: Array2D<any>, x: number, y: number): boolean {
     x < array2D.width &&
     y < array2D.height
   );
+}
+
+export function points(array2D: Array2D<any>): Point[] {
+  let points: Point[] = [];
+
+  for (let y = 0; y < array2D.height; y++) {
+    for (let x = 0; x < array2D.width; x++) {
+      points.push({ x, y });
+    }
+  }
+
+  return points;
+}
+
+export function *iter(array2D: Array2D<any>): Generator<Point, void> {
+  for (let y = 0; y < array2D.height; y++) {
+    for (let x = 0; x < array2D.width; x++) {
+      yield { x, y };
+    }
+  }
 }
