@@ -204,3 +204,11 @@ export function vonNeumannNeighbours(point: Point): Point[] {
     { x: x - 0, y: y + 1 },
   ];
 }
+
+export function relativeTo(point: Point, origin: Point): Point {
+  return { x: origin.x + point.x, y: origin.y + point.y };
+}
+
+export function relativeFrom(point: Point, origin: Point): Point {
+  return { x: point.x - origin.x, y: point.y - origin.y };
+}

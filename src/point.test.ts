@@ -148,4 +148,20 @@ describe("Point", () => {
       Point.from(5, 11),
     ]);
   });
+
+  test.each([
+    [Point.from(3, 3), Point.ORIGIN, Point.from(3, 3)],
+    [Point.from(1, 2), Point.from(3, 4), Point.from(4, 6)],
+  ])("%o relative to %o is %o", (point, origin, expected) => {
+    let actual = Point.relativeTo(point, origin);
+    expect(actual).toEqual(expected)
+  });
+
+  test.each([
+    [Point.from(3, 3), Point.ORIGIN, Point.from(3, 3)],
+    [Point.from(2, 4), Point.from(1, 2), Point.from(1, 2)],
+  ])("%o relative from %o is %o ", (point, origin, expected) => {
+    let actual = Point.relativeFrom(point, origin);
+    expect(actual).toEqual(expected)
+  });
 });
