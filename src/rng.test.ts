@@ -47,6 +47,15 @@ describe("RNG", () => {
     }
   });
 
+  it("should pick element from readonly array", () => {
+    let array = [1, 2, 3, 4] as const;
+
+    for (let i = 0; i < SAMPLES; i++) {
+      let value = RNG.element(array);
+      expect(array).toContain(value);
+    }
+  });
+
   it("should pick item from arguments", () => {
     let items = [1, 2, 3, 4];
 

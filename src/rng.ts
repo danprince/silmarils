@@ -68,14 +68,14 @@ export function boolean() {
 /**
  * Selects a random element from `array`.
  */
-export function element<Items extends any[]>(array: Items): Items[number] {
+export function element<Item>(array: readonly Item[]): Item {
   return PRNG.element(gen, array);
 }
 
 /**
  * Selects a random element from `items`.
  */
-export function item<Items extends any[]>(...items: Items): Items[number] {
+export function item<Item>(...items: Item[]): Item {
   return PRNG.item(gen, ...items);
 }
 

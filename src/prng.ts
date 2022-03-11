@@ -108,14 +108,14 @@ export function boolean(rng: RNG): boolean {
 /**
  * Selects a random element from `array`.
  */
-export function element<Items extends any[]>(rng: RNG, array: Items): Items[number] {
+export function element<Item>(rng: RNG, array: readonly Item[]): Item {
   return array[int(rng, 0, array.length)];
 }
 
 /**
  * Selects a random element from `items`.
  */
-export function item<Items extends any[]>(rng: RNG, ...items: Items): Items[number] {
+export function item<Item>(rng: RNG, ...items: Item[]): Item {
   return items[int(rng, 0, items.length)];
 }
 

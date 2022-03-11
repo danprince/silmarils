@@ -66,6 +66,16 @@ describe("PRNG", () => {
     }
   });
 
+  it("should work with readonly arrays", () => {
+    let rng = PRNG.generator(SEED);
+    let array = [1, 2, 3, 4] as const;
+
+    for (let i = 0; i < SAMPLES; i++) {
+      let value = PRNG.element(rng, array);
+      expect(array).toContain(value);
+    }
+  });
+
   it("should pick item from arguments", () => {
     let rng = PRNG.generator(SEED);
     let items = [1, 2, 3, 4];
