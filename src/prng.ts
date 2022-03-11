@@ -132,7 +132,7 @@ export function shuffle(rng: RNG, array: any[]): void {
   let n = array.length;
 
   for (let i = 0; i < n - 2; i++) {
-    let j = int(shuffler, i, n - 1);
+    let j = int(shuffler, i, n);
     let a = array[i];
     let b = array[j];
     array[i] = b;
