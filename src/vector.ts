@@ -45,7 +45,7 @@ export function fromPoints(start: Point, end: Point): Vector {
  * @category Constructors
  * @param radians Angle in radians
  */
-export function fromAngle(radians: number, length: number) {
+export function fromAngle(radians: number, length: number): Vector {
   return [
     Math.cos(radians) * length,
     Math.sin(radians) * length
